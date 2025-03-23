@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1059429077157",
+    "project_id": "eduworld-6ba8b",
+    "storage_bucket": "eduworld-6ba8b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1059429077157:android:430c7cfbeb90b1adacfd4c",
+        "android_client_info": {
+          "package_name": "com.example.edu_world"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAl0PVe6jNP438Ebw2O-nHAkOXGJ__2dFU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
