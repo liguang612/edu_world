@@ -1,4 +1,4 @@
-package com.ragnie.edu_world
+package com.ragnie.eduworld
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,3 +1,6 @@
+import 'package:edu_world/data/resources/colors.dart';
+import 'package:edu_world/data/resources/resources.dart';
+import 'package:edu_world/data/resources/theme.dart';
 import 'package:edu_world/utils/ext/build_context_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -8,24 +11,53 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Container(
-            height: context.screenHeight * (1 - 329 / 807),
-            child: Column(
-              children: [
-                Row(
-                  children: [SvgPicture.asset('')],
-                )
-              ],
-            ),
+      backgroundColor: AppColor.backgroundColor,
+      body: Column(children: [
+        SizedBox(
+          height: context.screenHeight * (1 - 483 / 812),
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              SvgPicture.asset(Assets.icLogo),
+              const SizedBox(width: 16),
+              const Text('EDU\nWORLD', style: AppTextTheme.lilitaOneRegular24)
+            ]),
+            const SizedBox(height: 72),
+            const Text('Xin chào', style: AppTextTheme.interRegular24)
+          ]),
+        ),
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.only(topLeft: Radius.circular(40), topRight: Radius.circular(40)),
+            boxShadow: [
+              BoxShadow(blurRadius: 50, color: AppColor.black.withOpacity(0.09), offset: const Offset(0, -4))
+            ],
+            color: AppColor.white,
           ),
-          Container(
-            height: context.screenHeight * 329 / 807,
-            child: Column(),
-          )
-        ],
-      ),
+          height: context.screenHeight * 483 / 812,
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 56),
+          width: context.screenWidth,
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            const Text('Đăng nhập', style: AppTextTheme.interRegular18),
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.all(45),
+              child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColor.purple01,
+                    padding: const EdgeInsets.symmetric(vertical: 15),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                  ),
+                  child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                    SvgPicture.asset(Assets.icGoogle),
+                    const SizedBox(width: 22),
+                    const Text('Đăng nhập với Google', style: AppTextTheme.interMedium14)
+                  ])),
+            ),
+            const Spacer(),
+          ]),
+        )
+      ]),
     );
   }
 }

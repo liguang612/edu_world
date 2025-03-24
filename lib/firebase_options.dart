@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAl0PVe6jNP438Ebw2O-nHAkOXGJ__2dFU',
-    appId: '1:1059429077157:android:430c7cfbeb90b1adacfd4c',
+    appId: '1:1059429077157:android:9d114ccaae5c87cdacfd4c',
     messagingSenderId: '1059429077157',
     projectId: 'eduworld-6ba8b',
     storageBucket: 'eduworld-6ba8b.firebasestorage.app',
@@ -59,11 +59,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCWV7TO0cbMPs7Ydmjr5t2S0YNJL4irz4M',
-    appId: '1:1059429077157:ios:40f2cba6be9d13b1acfd4c',
+    appId: '1:1059429077157:ios:cddf19776d988e66acfd4c',
     messagingSenderId: '1059429077157',
     projectId: 'eduworld-6ba8b',
     storageBucket: 'eduworld-6ba8b.firebasestorage.app',
-    iosBundleId: 'com.example.eduWorld',
+    iosBundleId: 'com.ragnie.eduworld',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
@@ -83,4 +83,5 @@ class DefaultFirebaseOptions {
     authDomain: 'eduworld-6ba8b.firebaseapp.com',
     storageBucket: 'eduworld-6ba8b.firebasestorage.app',
   );
+
 }

@@ -9,7 +9,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.ragnie.eduworld</string>
+	<string>com.example.eduWorld</string>
 	<key>PROJECT_ID</key>
 	<string>eduworld-6ba8b</string>
 	<key>STORAGE_BUCKET</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1059429077157:ios:cddf19776d988e66acfd4c</string>
+	<string>1:1059429077157:ios:40f2cba6be9d13b1acfd4c</string>
 </dict>
 </plist>

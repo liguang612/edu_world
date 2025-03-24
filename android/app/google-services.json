@@ -23,6 +23,44 @@
           "other_platform_oauth_client": []
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1059429077157:android:461bf724a8af2aacacfd4c",
+        "android_client_info": {
+          "package_name": "com.ragnie.edu_world"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAl0PVe6jNP438Ebw2O-nHAkOXGJ__2dFU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1059429077157:android:9d114ccaae5c87cdacfd4c",
+        "android_client_info": {
+          "package_name": "com.ragnie.eduworld"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAl0PVe6jNP438Ebw2O-nHAkOXGJ__2dFU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
     }
   ],
   "configuration_version": "1"
