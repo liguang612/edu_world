@@ -1,0 +1,24 @@
+part of 'login_bloc.dart';
+
+class LoginState extends Equatable {
+  const LoginState();
+
+  @override
+  List<Object?> get props => [];
+}
+
+class LoginSuccessState extends LoginState {
+  final Account account;
+
+  const LoginSuccessState(this.account);
+  @override
+  List<Object?> get props => [account];
+}
+
+class LoginFailedState extends LoginState {
+  final String msg;
+
+  const LoginFailedState(this.msg);
+  @override
+  List<Object?> get props => [msg];
+}

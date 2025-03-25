@@ -1,13 +1,20 @@
+import 'package:edu_world/data/local/local_data_access.dart';
+import 'package:edu_world/data/local/shared_preferences.dart';
+import 'package:edu_world/domain/repository/login_repository.dart';
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final getIt = GetIt.instance;
 
 configureInjection() async {
-  // final sharedPref = await SharedPreferences.getInstance();
+  final sharedPref = await SharedPreferences.getInstance();
 
   // Local
-  // getIt.registerLazySingleton<LocalDataAccess>(() => SharePrefHelper(sharedPref));
+  getIt.registerLazySingleton<LocalDataAccess>(() => SharePrefHelper(sharedPref));
 
-  // Databae
+  // Database
   // getIt.registerLazySingleton(() => DatabaseServices());
+
+  // Repository
+  getIt.registerLazySingleton(() => LoginRepository());
 }
