@@ -1,7 +1,7 @@
 import 'package:edu_world/data/local/local_data_access.dart';
 import 'package:edu_world/di/di.dart';
 import 'package:edu_world/domain/base/response_wrapper.dart';
-import 'package:edu_world/mdoel/account.dart';
+import 'package:edu_world/model/entity/account.dart';
 import 'package:edu_world/model/mapper/account_mapper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';

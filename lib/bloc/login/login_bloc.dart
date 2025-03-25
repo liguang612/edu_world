@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:edu_world/di/di.dart';
 import 'package:edu_world/domain/base/response_wrapper.dart';
 import 'package:edu_world/domain/repository/login_repository.dart';
-import 'package:edu_world/mdoel/account.dart';
+import 'package:edu_world/model/entity/account.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,7 +13,7 @@ part 'login_state.dart';
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final LoginRepository loginRepository = getIt.get();
 
-  LoginBloc(super.initialState) {
+  LoginBloc() : super(const LoginState()) {
     on<LoginWithGoogle>(_onLoginWithGoogle);
   }
 

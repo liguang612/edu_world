@@ -7,50 +7,25 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1059429077157:android:430c7cfbeb90b1adacfd4c",
-        "android_client_info": {
-          "package_name": "com.example.edu_world"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAl0PVe6jNP438Ebw2O-nHAkOXGJ__2dFU"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:1059429077157:android:461bf724a8af2aacacfd4c",
-        "android_client_info": {
-          "package_name": "com.ragnie.edu_world"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAl0PVe6jNP438Ebw2O-nHAkOXGJ__2dFU"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:1059429077157:android:9d114ccaae5c87cdacfd4c",
         "android_client_info": {
           "package_name": "com.ragnie.eduworld"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "1059429077157-qn6drrl7tj3v474ob54t6j68i4ajlehv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ragnie.eduworld",
+            "certificate_hash": "724f4f12d56ee3914acb9d7fe886edfc90111a81"
+          }
+        },
+        {
+          "client_id": "1059429077157-i28cf4s7orpu24aelq29bl490sbsk45j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAl0PVe6jNP438Ebw2O-nHAkOXGJ__2dFU"
@@ -58,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1059429077157-i28cf4s7orpu24aelq29bl490sbsk45j.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1059429077157-ubi2t4aoskko0rm0okjbbop77o8tmd4k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ragnie.eduworld"
+              }
+            }
+          ]
         }
       }
     }

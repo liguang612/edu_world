@@ -1,12 +1,16 @@
+import 'package:edu_world/bloc/login/login_bloc.dart';
 import 'package:edu_world/data/resources/colors.dart';
 import 'package:edu_world/data/resources/resources.dart';
 import 'package:edu_world/data/resources/theme.dart';
+import 'package:edu_world/di/di.dart';
 import 'package:edu_world/utils/ext/build_context_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class Login extends StatelessWidget {
-  const Login({super.key});
+  final LoginBloc bloc = getIt.get();
+
+  Login({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +46,7 @@ class Login extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(45),
               child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () => bloc.add(LoginWithGoogle()),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColor.purple01,
                     padding: const EdgeInsets.symmetric(vertical: 15),
