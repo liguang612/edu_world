@@ -8,7 +8,7 @@ class LoginState extends Equatable {
 }
 
 class LoginSuccessState extends LoginState {
-  final Account account;
+  final User account;
 
   const LoginSuccessState(this.account);
   @override
@@ -21,4 +21,12 @@ class LoginFailedState extends LoginState {
   const LoginFailedState(this.msg);
   @override
   List<Object?> get props => [msg];
+}
+
+class RegisterNewUserState extends LoginState {
+  final String id;
+
+  const RegisterNewUserState(this.id);
+  @override
+  List<Object?> get props => [id];
 }

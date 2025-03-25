@@ -1,9 +1,8 @@
 import 'dart:async';
 
 import 'package:edu_world/di/di.dart';
-import 'package:edu_world/domain/base/response_wrapper.dart';
-import 'package:edu_world/domain/repository/login_repository.dart';
-import 'package:edu_world/model/entity/account.dart';
+import 'package:edu_world/model/entity/user.dart';
+import 'package:edu_world/usecase/login_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,23 +10,30 @@ part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  final LoginRepository loginRepository = getIt.get();
+  final LoginUsecase loginUsecase = getIt.get();
 
   LoginBloc() : super(const LoginState()) {
     on<LoginWithGoogle>(_onLoginWithGoogle);
+    on<RegisterNewUser>(_onRegisterNewUser);
   }
 
   FutureOr<void> _onLoginWithGoogle(LoginWithGoogle event, Emitter<LoginState> emit) async {
-    final response = await loginRepository.logInWithGoogle();
+    final output = await loginUsecase.execute();
 
-    if (response.status == ResponseStatus.success) {
-      if (response.data != null) {
-        emit(LoginSuccessState(response.data!));
+    if (output.successful == true) {
+      if (output.user != null) {
+        emit(LoginSuccessState(output.user!));
+      } else {
+        add(RegisterNewUser(output.id ?? ''));
       }
-      return;
+    } else {
+      emit(const LoginFailedState("Login failed"));
     }
 
-    emit(const LoginFailedState("Login failed"));
     return;
+  }
+
+  FutureOr<void> _onRegisterNewUser(RegisterNewUser event, Emitter<LoginState> emit) {
+    emit(RegisterNewUserState(event.id));
   }
 }
