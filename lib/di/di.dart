@@ -1,4 +1,5 @@
 import 'package:edu_world/bloc/login/login_bloc.dart';
+import 'package:edu_world/bloc/register/register_bloc.dart';
 import 'package:edu_world/data/local/local_data_access.dart';
 import 'package:edu_world/data/local/shared_preferences.dart';
 import 'package:edu_world/domain/repository/login_repository.dart';
@@ -26,4 +27,5 @@ configureInjection() async {
 
   // Bloc
   getIt.registerLazySingleton(() => LoginBloc());
+  getIt.registerLazySingleton(() => RegisterBloc());
 }
