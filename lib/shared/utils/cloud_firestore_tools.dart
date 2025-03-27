@@ -1,23 +1,65 @@
-import 'dart:convert';
-import 'dart:io';
-
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:dio/dio.dart';
+import 'package:edu_world/data/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CloudFirestoreTools {
   static void startTools() async {
     final db = FirebaseFirestore.instance;
+
     final provCollection = db.collection("vietnam");
 
-    String contents = await rootBundle.loadString('assets/out.json');
-    final Map<String, dynamic> data = jsonDecode(contents);
+    const String path = 'https://violympic.vn/graphql';
 
-    for (var province in data.entries) {
-      final districtCollection = provCollection.doc(province.key).collection('district');
+    final dio = Dio();
+    final res = await dio.post(path, data: {
+      "query": "query GetProvinces {  provinces {    id    name    __typename  }}",
+      "variables": {},
+    });
 
-      for (var district in (province.value as Map<String, dynamic>).entries) {
-        districtCollection.doc(district.key).set({"wards": district.value as List<dynamic>});
-      }
+    final provinces = (res.data as Map<String, dynamic>)['data']['provinces'] as List<dynamic>;
+
+    for (Map<String, dynamic> province in provinces) {
+      final districtCollection = provCollection.doc(province['name']).set({"id": province['id']});
+
+      // final districtCollection = provCollection.doc(province['name']).collection(CollectionKeys.districtCollection);
+
+      // final res = await dio.post(path, data: {
+      //   "query": r"query GetDistricts($province: String!) {  fetchDistrict(province: $province) {    id    name   }}",
+      //   "variables": {"province": province['id']}
+      // });
+
+      // final districts = (res.data as Map<String, dynamic>)['data']['fetchDistrict'] as List<dynamic>;
+      // for (Map<String, dynamic> district in districts) {
+      //   final res = await dio.post(path, data: {
+      //     "query": r"query GetSchools($district: String!) {fetchSchool(district: $district) {id    name  }}",
+      //     "variables": {"district": district['id']}
+      //   });
+
+      //   final schools = (res.data as Map<String, dynamic>)['data']['fetchSchool'] as List<dynamic>;
+
+      //   final List<String> schoolList = [];
+      //   for (Map<String, dynamic> school in schools) {
+      //     schoolList.add(school['name']);
+      //     print(province['name'] + ' - ' + district['name'] + ' - ' + school['name']);
+      //   }
+
+      //   districtCollection.doc(district['name']).set({"schools": schoolList});
+      // }
     }
   }
+
+  // static void startTools() async {
+  //   final db = FirebaseFirestore.instance;
+
+  //   final provCollection = db.collection("vietnam");
+
+  //   final res = await provCollection.get();
+
+  //   for (var doc in res.docs) {
+  //     if (doc.id.startsWith('Tỉnh')) {
+  //       print(doc.id);
+  //       doc.reference.delete();
+  //     }
+  //   }
+  // }
 }

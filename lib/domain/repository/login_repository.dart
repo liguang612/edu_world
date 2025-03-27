@@ -2,12 +2,12 @@ import 'package:edu_world/data/local/local_data_access.dart';
 import 'package:edu_world/di/di.dart';
 import 'package:edu_world/model/entity/user.dart' as entity;
 import 'package:edu_world/model/mapper/user_mapper.dart';
-import 'package:edu_world/services/login_service.dart';
+import 'package:edu_world/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginRepository {
-  final LoginService service = getIt.get();
+  final AuthService service = getIt.get();
   final GoogleSignIn googleSignIn = GoogleSignIn(scopes: [
     'email',
     'https://www.googleapis.com/auth/admin.directory.customer.readonly',

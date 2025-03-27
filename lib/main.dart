@@ -4,6 +4,7 @@ import 'package:edu_world/di/di.dart';
 import 'package:edu_world/firebase_options.dart';
 import 'package:edu_world/view/login/login.dart';
 import 'package:edu_world/view/register/register.dart';
+import 'package:edu_world/view/tools.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 

@@ -2,13 +2,14 @@ import 'package:edu_world/data/resources/colors.dart';
 import 'package:edu_world/data/resources/theme.dart';
 import 'package:flutter/material.dart';
 
-class Dropdown<T> extends StatelessWidget {
+class Dropdown<T> extends StatefulWidget {
   final String? hint;
   final TextStyle? hintStyle;
   final List<T> items;
   final Function(T?) onChanged;
   final String? label;
   final TextStyle? style;
+  final T? value;
 
   const Dropdown({
     super.key,
@@ -18,12 +19,21 @@ class Dropdown<T> extends StatelessWidget {
     this.label,
     required this.onChanged,
     this.style,
+    this.value,
   });
 
   @override
+  State<Dropdown<T>> createState() => _DropdownState<T>();
+}
+
+class _DropdownState<T> extends State<Dropdown<T>> {
+  @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      if (label != null) ...[Text('$label', style: AppTextTheme.interRegular14), const SizedBox(height: 8)],
+      if (widget.label != null) ...[
+        Text('${widget.label}', style: AppTextTheme.interRegular14),
+        const SizedBox(height: 8)
+      ],
       DropdownButtonFormField<T>(
         decoration: InputDecoration(
           border: OutlineInputBorder(
@@ -31,21 +41,26 @@ class Dropdown<T> extends StatelessWidget {
             borderSide: const BorderSide(color: AppColor.gray01),
           ),
           contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-          hintStyle: hintStyle ?? AppTextTheme.interRegular14,
-          hintText: hint,
+          hintStyle: widget.hintStyle ?? AppTextTheme.interRegular14,
+          hintText: widget.hint,
           isDense: true,
         ),
         icon: const Icon(Icons.keyboard_arrow_down_rounded),
-        items: items
+        items: widget.items
             .map(
               (item) => DropdownMenuItem(
                 value: item,
-                child: Text(item.toString(), style: style ?? AppTextTheme.interRegular14),
+                child: Text(
+                  item.toString(),
+                  maxLines: 2,
+                  overflow: TextOverflow.visible,
+                  style: widget.style ?? AppTextTheme.interRegular14,
+                ),
               ),
             )
             .toList(),
-        onChanged: (value) => onChanged(value),
-        value: null,
+        onChanged: (value) => widget.onChanged(value),
+        value: widget.value,
       ),
     ]);
   }
