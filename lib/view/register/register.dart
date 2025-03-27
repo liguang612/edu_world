@@ -4,6 +4,8 @@ import 'package:edu_world/data/resources/resources.dart';
 import 'package:edu_world/data/resources/theme.dart';
 import 'package:edu_world/di/di.dart';
 import 'package:edu_world/shared/utils/ext/build_context_ext.dart';
+import 'package:edu_world/shared/widgets/dropdown.dart';
+import 'package:edu_world/shared/widgets/radio_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -85,66 +87,68 @@ class Register extends StatelessWidget {
                       isDense: true,
                     ),
                   ),
-                  DropdownButtonFormField<String>(
-                    decoration: const InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-                      hintStyle: AppTextTheme.interRegular14,
-                      hintText: 'Chọn lớp',
-                      isDense: true,
-                    ),
-                    value: 'Lớp 1',
-                    items: ['Lớp 1', 'Lớp 2', 'Lớp 3', 'Lớp 4', 'Lớp 5']
-                        .map((grade) => DropdownMenuItem<String>(
-                              value: grade,
-                              child: Text(grade),
-                            ))
-                        .toList(),
-                    onChanged: (value) {
-                      // setState(() {
-                      //   selectedGrade = value;
-                      // });
+                  const SizedBox(height: 24),
+                  Dropdown(
+                    items: const ['Lớp 1', 'Lớp 2', 'Lớp 3', 'Lớp 4', 'Lớp 5'],
+                    label: 'Tỉnh / Thành phố',
+                    onChanged: (grade) {
+                      print(grade);
                     },
                   ),
-                  DropdownButtonFormField<String>(
-                    decoration: const InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-                      hintStyle: AppTextTheme.interRegular14,
-                      hintText: 'Chọn lớp',
-                      isDense: true,
-                    ),
-                    value: 'Lớp 1',
-                    items: ['Lớp 1', 'Lớp 2', 'Lớp 3', 'Lớp 4', 'Lớp 5']
-                        .map((grade) => DropdownMenuItem<String>(
-                              value: grade,
-                              child: Text(grade),
-                            ))
-                        .toList(),
-                    onChanged: (value) {
-                      // setState(() {
-                      //   selectedGrade = value;
-                      // });
+                  const SizedBox(height: 24),
+                  Dropdown(
+                    items: const ['Lớp 1', 'Lớp 2', 'Lớp 3', 'Lớp 4', 'Lớp 5'],
+                    label: 'Quận / Huyện',
+                    onChanged: (grade) {
+                      print(grade);
                     },
                   ),
-                  DropdownButtonFormField<String>(
-                    decoration: const InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-                      hintStyle: AppTextTheme.interRegular14,
-                      hintText: 'Chọn lớp',
-                      isDense: true,
-                    ),
-                    value: null,
-                    items: ['Lớp 1', 'Lớp 2', 'Lớp 3', 'Lớp 4', 'Lớp 5']
-                        .map((grade) => DropdownMenuItem<String>(
-                              value: grade,
-                              child: Text(grade),
-                            ))
-                        .toList(),
-                    onChanged: (value) {
-                      // setState(() {
-                      //   selectedGrade = value;
-                      // });
+                  const SizedBox(height: 24),
+                  Dropdown(
+                    items: const ['Lớp 1', 'Lớp 2', 'Lớp 3', 'Lớp 4', 'Lớp 5'],
+                    label: 'Xã / Phường',
+                    onChanged: (grade) {
+                      print(grade);
                     },
                   ),
+                  const SizedBox(height: 24),
+                  const Text('Bạn là', style: AppTextTheme.interRegular14),
+                  const RadioButton(items: ['Học sinh', 'Giáo viên']),
+                  Row(children: [
+                    Expanded(
+                      flex: 260,
+                      child: Dropdown(
+                        items: const ['Lớp 1', 'Lớp 2', 'Lớp 3', 'Lớp 4', 'Lớp 5'],
+                        label: 'Trường',
+                        onChanged: (grade) {
+                          print(grade);
+                        },
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      flex: 73,
+                      child: Dropdown(
+                        items: const ['Lớp 1', 'Lớp 2', 'Lớp 3', 'Lớp 4', 'Lớp 5'],
+                        label: 'Lớp',
+                        onChanged: (grade) {
+                          print(grade);
+                        },
+                      ),
+                    ),
+                  ]),
+                  const SizedBox(height: 24),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColor.purple01,
+                      padding: const EdgeInsets.symmetric(vertical: 15),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                    ),
+                    child: const Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                      Text('Đăng ký', style: AppTextTheme.interMedium14),
+                    ]),
+                  )
                 ]),
               ),
             ),

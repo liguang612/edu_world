@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:edu_world/data/resources/colors.dart';
 import 'package:edu_world/di/di.dart';
 import 'package:edu_world/firebase_options.dart';
 import 'package:edu_world/view/login/login.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColor.purple01),
         useMaterial3: true,
       ),
       home: Register(),
