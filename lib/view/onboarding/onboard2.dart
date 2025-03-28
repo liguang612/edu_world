@@ -1,26 +1,38 @@
-import 'package:edu_world/data/resources/resources.dart';
 import 'package:flutter/material.dart';
 
-class Onboarding extends StatelessWidget {
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: CardSlider(),
+    );
+  }
+}
+
+class CardSlider extends StatelessWidget {
   final List<Map<String, String>> cards = [
     {
-      'image': Assets.imOnboarding1,
+      'image': 'assets/learning.png', // Đường dẫn hình ảnh đầu tiên
       'title': 'Học mọi lúc & mọi nơi',
       'description': 'Khám phá kiến thức bất cứ khi nào bạn muốn.',
     },
     {
-      'image': Assets.imOnboarding2,
+      'image': 'assets/visual.png', // Đường dẫn hình ảnh thứ hai
       'title': 'Bài giảng sinh động',
       'description': 'Học dễ dàng thông qua các bài giảng trực quan.',
     },
     {
-      'image': Assets.imOnboarding3,
+      'image': 'assets/quiz.png', // Đường dẫn hình ảnh thứ ba
       'title': 'Ôn & luyện thi',
       'description': 'Kiểm tra kiến thức với các bài trắc nghiệm.',
     },
   ];
-
-  Onboarding({super.key});
 
   @override
   Widget build(BuildContext context) {
