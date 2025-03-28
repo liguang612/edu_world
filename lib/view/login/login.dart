@@ -3,7 +3,7 @@ import 'package:edu_world/data/resources/colors.dart';
 import 'package:edu_world/data/resources/resources.dart';
 import 'package:edu_world/data/resources/theme.dart';
 import 'package:edu_world/di/di.dart';
-import 'package:edu_world/utils/ext/build_context_ext.dart';
+import 'package:edu_world/shared/utils/ext/build_context_ext.dart';
 import 'package:edu_world/view/register/register.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,7 +25,7 @@ class Login extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const Register(),
+                  builder: (context) => Register(),
                 ));
           }
         },

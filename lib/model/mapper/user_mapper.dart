@@ -8,6 +8,7 @@ extension UserMapper on UserResponse {
         district: district,
         grade: grade,
         name: name,
+        phone: phone,
         province: province,
         role: role,
         school: school,
