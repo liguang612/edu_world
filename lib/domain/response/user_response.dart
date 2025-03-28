@@ -48,7 +48,7 @@ class UserResponse {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'birthday': birthday,
+      'birth': birthday,
       'district': district,
       'grade': grade,
       'name': name,
@@ -62,9 +62,9 @@ class UserResponse {
   factory UserResponse.fromMap(String id, Map<String, dynamic> map) {
     return UserResponse(
       id,
-      birthday: map['birthday'] as Timestamp,
+      birthday: map['birth'] as Timestamp,
       district: map['district'] as String,
-      grade: map['grade'] as int,
+      grade: map['class'] as int,
       name: map['name'] as String,
       phone: map['phone'] as String,
       province: map['province'] as String,
