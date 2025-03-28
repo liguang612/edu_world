@@ -6,33 +6,25 @@ import 'package:edu_world/di/di.dart';
 import 'package:edu_world/shared/utils/ext/build_context_ext.dart';
 import 'package:edu_world/shared/widgets/dropdown.dart';
 import 'package:edu_world/shared/widgets/radio_button.dart';
+import 'package:edu_world/view/onboarding/onboarding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
-class Register extends StatefulWidget {
-  Register({super.key}) {}
-
-  @override
-  State<Register> createState() => _RegisterState();
-}
-
-class _RegisterState extends State<Register> {
+class Register extends StatelessWidget {
   final RegisterBloc bloc = getIt.get();
 
   final TextEditingController birthController = TextEditingController();
-
   final TextEditingController nameController = TextEditingController();
-
   final TextEditingController phoneController = TextEditingController();
 
   String? province, district, school;
-
   int _class = 0;
+  final GlobalKey<RadioButtonState> roleKey = GlobalKey();
+  DateTime? birth;
 
-  @override
-  void initState() {
-    super.initState();
+  Register({super.key}) {
     bloc.add(GetProvince());
   }
 
@@ -43,7 +35,17 @@ class _RegisterState extends State<Register> {
       body: BlocProvider.value(
         value: bloc,
         child: BlocListener<RegisterBloc, RegisterState>(
-          listener: (context, state) {},
+          listener: (context, state) {
+            if (state is RegisterUserSuccess) {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Onboarding(),
+                  ));
+            } else if (state is RegisterUserFailed) {
+              Fluttertoast.showToast(msg: state.message);
+            }
+          },
           child: Column(children: [
             SizedBox(
               height: context.screenHeight * (1 - 483 / 812),
@@ -89,12 +91,19 @@ class _RegisterState extends State<Register> {
                     const SizedBox(height: 24),
                     TextField(
                       controller: birthController,
-                      decoration: const InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-                        hintStyle: AppTextTheme.interRegular14,
-                        hintText: 'Ngày sinh',
-                        isDense: true,
-                      ),
+                      decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+                          hintStyle: AppTextTheme.interRegular14,
+                          hintText: 'Ngày sinh',
+                          isDense: true,
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              print('selectdate');
+                              _selectDate(context);
+                            },
+                            icon: const Icon(Icons.edit_calendar_outlined, color: AppColor.gray02),
+                          )),
+                      readOnly: true,
                     ),
                     const SizedBox(height: 24),
                     TextField(
@@ -116,6 +125,7 @@ class _RegisterState extends State<Register> {
                           onChanged: (grade) {
                             province = grade;
                             district = school = null;
+                            _class = 0;
 
                             bloc.add(GetDistricts(grade ?? ''));
                           },
@@ -141,7 +151,7 @@ class _RegisterState extends State<Register> {
                     ),
                     const SizedBox(height: 24),
                     const Text('Bạn là', style: AppTextTheme.interRegular14),
-                    const RadioButton(items: ['Học sinh', 'Giáo viên']),
+                    RadioButton(key: roleKey, items: const ['Học sinh', 'Giáo viên']),
                     Row(children: [
                       Expanded(
                         flex: 260,
@@ -154,6 +164,7 @@ class _RegisterState extends State<Register> {
                               label: 'Trường',
                               onChanged: (grade) {
                                 school = grade;
+                                _class = 0;
 
                                 bloc.add(GetClasses(grade));
                               },
@@ -171,9 +182,7 @@ class _RegisterState extends State<Register> {
                               key: UniqueKey(),
                               items: state is GetClassesSuccess ? state.classes : [],
                               label: 'Lớp',
-                              onChanged: (grade) {
-                                _class = grade;
-                              },
+                              onChanged: (grade) => _class = grade,
                             );
                           },
                         ),
@@ -181,7 +190,7 @@ class _RegisterState extends State<Register> {
                     ]),
                     const SizedBox(height: 24),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: _onRegisterSubmit,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColor.purple01,
                         padding: const EdgeInsets.symmetric(vertical: 15),
@@ -199,5 +208,51 @@ class _RegisterState extends State<Register> {
         ),
       ),
     );
+  }
+
+  Future<void> _selectDate(BuildContext context) async {
+    final now = DateTime.now();
+
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: now.subtract(const Duration(days: 365 * 6)),
+      firstDate: now.subtract(const Duration(days: 365 * 100)),
+      lastDate: now.subtract(const Duration(days: 365 * 6)),
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: const ColorScheme.light(
+              primary: AppColor.purple01,
+              onPrimary: AppColor.white,
+              onSurface: AppColor.black,
+            ),
+          ),
+          child: child!,
+        );
+      },
+    );
+
+    if (picked != null) {
+      birth = picked;
+
+      // Format the date as dd/MM/yyyy
+      final formattedDate = "${picked.day.toString().padLeft(2, '0')}/"
+          "${picked.month.toString().padLeft(2, '0')}/"
+          "${picked.year}";
+      birthController.text = formattedDate;
+    }
+  }
+
+  void _onRegisterSubmit() {
+    bloc.add(RegisterSubmit(
+      name: nameController.text.trim(),
+      birth: birth,
+      phone: phoneController.text.trim(),
+      province: province,
+      district: district,
+      role: roleKey.currentState?.indexSelected,
+      school: school,
+      Class: _class,
+    ));
   }
 }

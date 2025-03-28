@@ -12,11 +12,12 @@ class RadioButton<T> extends StatefulWidget {
   });
 
   @override
-  State<RadioButton> createState() => _RadioButtonState<T>();
+  State<RadioButton> createState() => RadioButtonState<T>();
 }
 
-class _RadioButtonState<T> extends State<RadioButton> {
+class RadioButtonState<T> extends State<RadioButton> {
   T? selected;
+  int? indexSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +29,7 @@ class _RadioButtonState<T> extends State<RadioButton> {
                   groupValue: selected,
                   onChanged: (value) => setState(() {
                     selected = value;
+                    indexSelected = widget.items.indexOf(value);
                   }),
                   title: Text(e.toString(), style: widget.textStyle ?? AppTextTheme.interRegular14),
                   value: e,

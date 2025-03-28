@@ -33,4 +33,27 @@ class GetClasses extends RegisterEvent {
   List<Object?> get props => [school];
 }
 
-class RegisterSubmit extends RegisterEvent {}
+class RegisterSubmit extends RegisterEvent {
+  final String name;
+  final DateTime? birth;
+  final String phone;
+  final String? province;
+  final String? district;
+  final int? role;
+  final String? school;
+  final int Class;
+
+  const RegisterSubmit({
+    required this.name,
+    required this.birth,
+    required this.phone,
+    required this.province,
+    required this.district,
+    required this.role,
+    required this.school,
+    required this.Class,
+  });
+
+  @override
+  List<Object?> get props => [name, birth, phone, province, district, role, school, Class];
+}

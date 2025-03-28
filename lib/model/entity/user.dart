@@ -4,6 +4,7 @@ class User {
   final String district;
   final int grade;
   final String name;
+  final String phone;
   final String province;
   final int role;
   final String school;
@@ -14,6 +15,7 @@ class User {
     required this.district,
     required this.grade,
     required this.name,
+    required this.phone,
     required this.province,
     required this.role,
     required this.school,

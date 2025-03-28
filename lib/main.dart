@@ -3,8 +3,6 @@ import 'package:edu_world/data/resources/colors.dart';
 import 'package:edu_world/di/di.dart';
 import 'package:edu_world/firebase_options.dart';
 import 'package:edu_world/view/login/login.dart';
-import 'package:edu_world/view/register/register.dart';
-import 'package:edu_world/view/tools.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -31,7 +29,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: AppColor.purple01),
         useMaterial3: true,
       ),
-      home: Register(),
+      home: Login(),
     );
   }
 }

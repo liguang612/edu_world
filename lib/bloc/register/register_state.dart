@@ -46,3 +46,19 @@ class GetClassesSuccess extends RegisterState {
 }
 
 class GetClassesFailed extends RegisterState {}
+
+class RegisterUserSuccess extends RegisterState {
+  final User user;
+
+  const RegisterUserSuccess(this.user);
+  @override
+  List<Object?> get props => [user];
+}
+
+class RegisterUserFailed extends RegisterState {
+  final String message;
+
+  const RegisterUserFailed(this.message);
+  @override
+  List<Object?> get props => [message];
+}
