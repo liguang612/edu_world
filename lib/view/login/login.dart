@@ -4,10 +4,12 @@ import 'package:edu_world/data/resources/resources.dart';
 import 'package:edu_world/data/resources/theme.dart';
 import 'package:edu_world/di/di.dart';
 import 'package:edu_world/shared/utils/ext/build_context_ext.dart';
+import 'package:edu_world/view/onboarding/onboarding.dart';
 import 'package:edu_world/view/register/register.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Login extends StatelessWidget {
   final LoginBloc bloc = getIt.get();
@@ -27,6 +29,14 @@ class Login extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => Register(),
                 ));
+          } else if (state is LoginSuccessState) {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Onboarding(),
+                ));
+          } else if (state is LoginFailedState) {
+            Fluttertoast.showToast(msg: 'Có lỗi xảy ra! Vui lòng thử lại');
           }
         },
         child: Column(children: [
