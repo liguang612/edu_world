@@ -43,7 +43,7 @@ class Register extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const Onboarding(),
+                    builder: (context) => Onboarding(),
                   ));
             } else if (state is RegisterUserFailed) {
               Fluttertoast.showToast(msg: state.message);
