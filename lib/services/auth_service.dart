@@ -58,4 +58,8 @@ class AuthService {
     }
     return false;
   }
+
+  Future<void> onboard(String userId) async {
+    userRef.doc(userId).update({'onboarded': true});
+  }
 }

@@ -71,4 +71,12 @@ class LoginRepository {
       print('LOGOUT_ERROR: $e');
     }
   }
+
+  void onboard() {
+    try {
+      service.onboard(localDataAccess.getUserId()!);
+    } catch (e) {
+      print(e);
+    }
+  }
 }
