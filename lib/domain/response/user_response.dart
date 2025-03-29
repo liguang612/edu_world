@@ -73,7 +73,7 @@ class UserResponse {
       id: id,
       birthday: map['birthday'] as Timestamp,
       district: map['district'] as String,
-      grade: map['class'] as int,
+      grade: map['grade'] as int,
       name: map['name'] as String,
       phone: map['phone'] as String,
       province: map['province'] as String,

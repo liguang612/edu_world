@@ -1,4 +1,5 @@
 import 'package:edu_world/bloc/login/login_bloc.dart';
+import 'package:edu_world/bloc/onboarding/onboarding_bloc.dart';
 import 'package:edu_world/bloc/register/register_bloc.dart';
 import 'package:edu_world/bloc/splash/splash_bloc.dart';
 import 'package:edu_world/data/local/local_data_access.dart';
@@ -36,6 +37,7 @@ configureInjection() async {
 
   // Bloc
   getIt.registerLazySingleton(() => LoginBloc());
+  getIt.registerLazySingleton(() => OnboardingBloc());
   getIt.registerLazySingleton(() => RegisterBloc());
   getIt.registerLazySingleton(() => SplashBloc());
 }

@@ -1,11 +1,13 @@
-import 'dart:math';
-
+import 'package:edu_world/bloc/onboarding/onboarding_bloc.dart';
+import 'package:edu_world/config/routes.dart';
 import 'package:edu_world/data/resources/colors.dart';
 import 'package:edu_world/data/resources/resources.dart';
 import 'package:edu_world/data/resources/theme.dart';
+import 'package:edu_world/di/di.dart';
 import 'package:edu_world/shared/utils/ext/build_context_ext.dart';
 import 'package:edu_world/shared/widgets/measure_size.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 class Onboarding extends StatefulWidget {
@@ -31,6 +33,8 @@ class _OnboardingState extends State<Onboarding> {
     },
   ];
 
+  final OnboardingBloc bloc = getIt.get();
+
   final PageController imageController = PageController();
 
   int pageIdx = 1;
@@ -42,7 +46,7 @@ class _OnboardingState extends State<Onboarding> {
       body: Column(children: [
         // Use the measured height if available, otherwise render a temporary widget
         SizedBox(
-          height: pageHeight ?? 0,
+          height: pageHeight ?? 0 + 50,
           child: PageView.builder(
             controller: imageController,
             itemCount: cards.length,
@@ -85,21 +89,32 @@ class _OnboardingState extends State<Onboarding> {
         // Second PageView can take up remaining space
         Expanded(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            ElevatedButton(
-              onPressed: () {
-                imageController.nextPage(
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.easeOut,
-                );
-                imageController.addListener(() => setState(() => pageIdx = imageController.page?.round() ?? 0 + 1));
+            BlocListener<OnboardingBloc, OnboardingState>(
+              bloc: bloc,
+              listener: (context, state) {
+                if (state is OnboardingDone) Navigator.popAndPushNamed(context, AppRoute.home);
               },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColor.purple01,
-                foregroundColor: AppColor.white,
-                padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+              child: ElevatedButton(
+                onPressed: () {
+                  if (pageIdx == cards.length) {
+                    bloc.add(OnboardingEvent());
+                  } else {
+                    imageController.nextPage(
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.easeOut,
+                    );
+                    imageController
+                        .addListener(() => setState(() => pageIdx = (imageController.page?.round() ?? 0) + 1));
+                  }
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColor.purple01,
+                  foregroundColor: AppColor.white,
+                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                ),
+                child: Text(pageIdx == cards.length ? "Bắt đầu" : "Tiếp theo"),
               ),
-              child: Text(pageIdx == cards.length ? "Bắt đầu" : "Tiếp theo"),
             ),
           ]),
         ),

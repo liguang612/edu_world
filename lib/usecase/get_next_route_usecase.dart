@@ -17,11 +17,19 @@ class GetNextRouteUsecase {
       final res = await _authService.getUser(userId);
 
       if (res != null) {
-        return GetNextRouteOutput(
-          arguments: HomepageArgs(res.toUser()),
-          nextRoute: AppRoute.home,
-          successful: true,
-        );
+        if (res.onboarded) {
+          return GetNextRouteOutput(
+            arguments: HomepageArgs(res.toUser()),
+            nextRoute: AppRoute.home,
+            successful: true,
+          );
+        } else {
+          return GetNextRouteOutput(
+            arguments: HomepageArgs(res.toUser()),
+            nextRoute: AppRoute.onboarding,
+            successful: true,
+          );
+        }
       } else {
         return const GetNextRouteOutput(nextRoute: AppRoute.register, successful: true);
       }
