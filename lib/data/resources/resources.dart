@@ -1,7 +1,10 @@
 class Assets {
   // icons
   static const String iconPrefix = 'assets/icons';
+  static const String icAccount = '$iconPrefix/account.svg';
+  static const String icCourse = '$iconPrefix/course.svg';
   static const String icGoogle = '$iconPrefix/google.svg';
+  static const String icHome = '$iconPrefix/home.svg';
   static const String icLogo = '$iconPrefix/logo.svg';
   static const String icOnboarding1 = '$iconPrefix/onboarding1.svg';
   static const String icOnboarding2 = '$iconPrefix/onboarding2.svg';

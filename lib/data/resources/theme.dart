@@ -17,6 +17,13 @@ class AppTextTheme {
     fontVariations: [FontVariation.weight(500)],
   );
 
+  static const interRegular12 = TextStyle(
+    color: AppColor.black,
+    fontFamily: 'Inter',
+    fontSize: 12,
+    fontVariations: [FontVariation.weight(400)],
+  );
+
   static const interRegular14 = TextStyle(
     color: AppColor.black,
     fontFamily: 'Inter',
