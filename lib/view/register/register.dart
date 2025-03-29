@@ -1,4 +1,5 @@
 import 'package:edu_world/bloc/register/register_bloc.dart';
+import 'package:edu_world/data/local/local_data_access.dart';
 import 'package:edu_world/data/resources/colors.dart';
 import 'package:edu_world/data/resources/resources.dart';
 import 'package:edu_world/data/resources/theme.dart';
@@ -23,6 +24,8 @@ class Register extends StatelessWidget {
   int _class = 0;
   final GlobalKey<RadioButtonState> roleKey = GlobalKey();
   DateTime? birth;
+
+  final LocalDataAccess _localDataAccess = getIt.get();
 
   Register({super.key}) {
     bloc.add(GetProvince());

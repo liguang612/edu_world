@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:edu_world/data/local/local_data_access.dart';
 import 'package:edu_world/di/di.dart';
+import 'package:edu_world/domain/response/user_response.dart';
 import 'package:edu_world/services/auth_service.dart';
 
 class RegisterRepository {
@@ -56,16 +57,17 @@ class RegisterRepository {
     required String school,
     required int Class,
   }) async {
-    return await service.register(
+    return await service.register(UserResponse(
       id: _localDataAccess.getUserId() ?? '',
+      birthday: Timestamp.fromDate(birth),
+      district: district,
+      grade: Class,
       name: name,
-      birth: Timestamp.fromDate(birth),
       phone: phone,
       province: province,
-      district: district,
       role: role,
       school: school,
-      Class: Class,
-    );
+      onboarded: false,
+    ));
   }
 }

@@ -48,28 +48,9 @@ class AuthService {
     return rawData.map((e) => e.toString()).toList();
   }
 
-  Future<bool> register({
-    required String id,
-    required String name,
-    required Timestamp birth,
-    required String phone,
-    required String province,
-    required String district,
-    required int role,
-    required String school,
-    required int Class,
-  }) async {
+  Future<bool> register(UserResponse response) async {
     try {
-      await userRef.doc(id).set({
-        'name': name,
-        'birth': birth,
-        'phone': phone,
-        'province': province,
-        'district': district,
-        'role': role,
-        'school': school,
-        'class': Class,
-      });
+      await userRef.doc(response.id).set(response.toMap());
 
       return true;
     } catch (e) {
