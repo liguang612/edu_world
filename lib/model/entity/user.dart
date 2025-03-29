@@ -8,8 +8,10 @@ class User {
   final String province;
   final int role;
   final String school;
+  String? avatarUrl;
+  String? email;
 
-  const User(
+  User(
     this.id, {
     required this.birthday,
     required this.district,
@@ -19,5 +21,9 @@ class User {
     required this.province,
     required this.role,
     required this.school,
+    this.avatarUrl,
+    this.email,
   });
+
+  String get address => 'Huyện $district, tỉnh $province';
 }

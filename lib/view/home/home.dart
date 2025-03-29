@@ -20,7 +20,7 @@ class _HomeState extends State<Home> {
   List<Widget> tabs = [
     const Dashboard(),
     const Course(),
-    const Account(),
+    Account(),
   ];
 
   @override
