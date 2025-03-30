@@ -16,3 +16,9 @@ class GetAccountInfoSuccess extends AccountState {
 }
 
 class GetAccountInfoFailed extends AccountState {}
+
+class LoggingOutState extends AccountState {}
+
+class LoggedOutSuccess extends AccountState {}
+
+class LoggedOutFailed extends AccountState {}

@@ -3,6 +3,7 @@ import 'package:edu_world/config/routes.dart';
 import 'package:edu_world/data/resources/colors.dart';
 import 'package:edu_world/di/di.dart';
 import 'package:edu_world/firebase_options.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +14,8 @@ void main() async {
   // Firebase
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseFirestore.instance.settings = const Settings(persistenceEnabled: true);
+
+  FirebaseAuth.instance.setLanguageCode('vi');
 
   runApp(const EduWorld());
 }

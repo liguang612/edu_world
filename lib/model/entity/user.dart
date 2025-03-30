@@ -25,5 +25,15 @@ class User {
     this.email,
   });
 
-  String get address => 'Huyện $district, tỉnh $province';
+  String address() {
+    String address = '';
+
+    String district = this.district.toLowerCase(), province = this.province.toLowerCase();
+    if (!district.contains('huyện') && !district.contains('quận')) address += 'Huyện ';
+    address += '${this.district}, ';
+    if (!province.contains('tỉnh') && !province.contains('tp')) address += 'tỉnh ';
+    address += this.province;
+
+    return address;
+  }
 }

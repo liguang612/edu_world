@@ -8,3 +8,5 @@ class AccountEvent extends Equatable {
 }
 
 class GetAccountInfo extends AccountEvent {}
+
+class Logout extends AccountEvent {}
