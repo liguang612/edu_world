@@ -47,7 +47,11 @@ class Account extends StatelessWidget {
                       style: AppTextTheme.interMedium24,
                     ),
                     Text(
-                      state is GetAccountInfoSuccess ? state.user.email ?? '' : '',
+                      state is GetAccountInfoSuccess
+                          ? state.user.role == 0
+                              ? 'Học sinh'
+                              : 'Giáo viên'
+                          : '',
                       style: AppTextTheme.interRegular16,
                     ),
                     const SizedBox(height: 25),
@@ -55,6 +59,11 @@ class Account extends StatelessWidget {
                       icon: SvgPicture.asset(Assets.icProfile, height: 24, width: 24),
                       title: 'Tên',
                       value: state is GetAccountInfoSuccess ? state.user.name : '',
+                    ),
+                    InfoItem(
+                      icon: SvgPicture.asset(Assets.icEmail, height: 24, width: 24),
+                      title: 'Email',
+                      value: state is GetAccountInfoSuccess ? state.user.email ?? '' : '',
                     ),
                     InfoItem(
                       icon: SvgPicture.asset(Assets.icPhone, height: 24, width: 24),
