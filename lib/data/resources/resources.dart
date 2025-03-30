@@ -6,6 +6,7 @@ class Assets {
   static const String icGoogle = '$iconPrefix/google.svg';
   static const String icHome = '$iconPrefix/home.svg';
   static const String icLogo = '$iconPrefix/logo.svg';
+  static const String icEmail = '$iconPrefix/email.svg';
   static const String icOnboarding1 = '$iconPrefix/onboarding1.svg';
   static const String icOnboarding2 = '$iconPrefix/onboarding2.svg';
   static const String icOnboarding3 = '$iconPrefix/onboarding3.svg';

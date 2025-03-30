@@ -60,16 +60,20 @@ class LoginRepository {
     return null;
   }
 
-  Future<void> logout() async {
+  Future<bool> logout() async {
     try {
       await FirebaseAuth.instance.signOut();
       await googleSignIn.disconnect();
 
       localDataAccess.clearAccessToken();
       localDataAccess.clearUserId();
+
+      return true;
     } catch (e) {
       print('LOGOUT_ERROR: $e');
     }
+
+    return false;
   }
 
   void onboard() {

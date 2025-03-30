@@ -9,6 +9,14 @@ class AppTextTheme {
     fontSize: 24,
   );
 
+  // Bold
+  static const interBold16 = TextStyle(
+    color: AppColor.black,
+    fontFamily: 'Inter',
+    fontSize: 16,
+    fontVariations: [FontVariation.weight(700)],
+  );
+
   // Medium
   static const interMedium14 = TextStyle(
     color: AppColor.white,

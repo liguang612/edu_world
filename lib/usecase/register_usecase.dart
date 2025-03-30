@@ -70,12 +70,12 @@ class RegisterInput {
 // ignore: non_constant_identifier_names
   RegisterInput({
     required this.name,
-    required this.birth,
+    this.birth,
     required this.phone,
-    required this.province,
-    required this.district,
-    required this.role,
-    required this.school,
+    this.province,
+    this.district,
+    this.role,
+    this.school,
     required this.Class,
   });
 }

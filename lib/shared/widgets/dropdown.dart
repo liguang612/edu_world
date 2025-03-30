@@ -9,7 +9,7 @@ class Dropdown<T> extends StatefulWidget {
   final Function(T?) onChanged;
   final String? label;
   final TextStyle? style;
-  final T? value;
+  final T? initialValue;
 
   const Dropdown({
     super.key,
@@ -19,7 +19,7 @@ class Dropdown<T> extends StatefulWidget {
     this.label,
     required this.onChanged,
     this.style,
-    this.value,
+    this.initialValue,
   });
 
   @override
@@ -60,7 +60,7 @@ class _DropdownState<T> extends State<Dropdown<T>> {
             )
             .toList(),
         onChanged: (value) => widget.onChanged(value),
-        value: widget.value,
+        value: widget.initialValue,
       ),
     ]);
   }

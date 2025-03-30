@@ -62,3 +62,5 @@ class RegisterUserFailed extends RegisterState {
   @override
   List<Object?> get props => [message];
 }
+
+class Registering extends RegisterState {}
