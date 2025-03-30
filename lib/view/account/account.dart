@@ -6,6 +6,7 @@ import 'package:edu_world/data/resources/theme.dart';
 import 'package:edu_world/di/di.dart';
 import 'package:edu_world/model/entity/user.dart';
 import 'package:edu_world/shared/utils/ext/build_context_ext.dart';
+import 'package:edu_world/shared/utils/ext/date_time_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -64,6 +65,11 @@ class Account extends StatelessWidget {
                       icon: SvgPicture.asset(Assets.icEmail, height: 24, width: 24),
                       title: 'Email',
                       value: state is GetAccountInfoSuccess ? state.user.email ?? '' : '',
+                    ),
+                    InfoItem(
+                      icon: SvgPicture.asset(Assets.icBirth, height: 24, width: 24),
+                      title: 'Ngày sinh',
+                      value: state is GetAccountInfoSuccess ? state.user.birthday.formattedString : '-- / -- / ----',
                     ),
                     InfoItem(
                       icon: SvgPicture.asset(Assets.icPhone, height: 24, width: 24),
