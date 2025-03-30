@@ -62,7 +62,7 @@ class LoginRepository {
 
   Future<bool> logout() async {
     try {
-      await FirebaseAuth.instance.signOut();
+      // await FirebaseAuth.instance.signOut();
       await googleSignIn.disconnect();
 
       localDataAccess.clearAccessToken();
