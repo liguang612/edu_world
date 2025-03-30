@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:edu_world/data/constants.dart';
 import 'package:edu_world/domain/response/user_response.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
   final _firestore = FirebaseFirestore.instance;
@@ -46,6 +48,21 @@ class AuthService {
     final rawData = (res.data() as Map<String, dynamic>)["schools"] as List<dynamic>;
 
     return rawData.map((e) => e.toString()).toList();
+  }
+
+  Future<bool> logOut() async {
+    try {
+      final GoogleSignIn googleSignIn = GoogleSignIn();
+      await googleSignIn.signOut();
+
+      await FirebaseAuth.instance.signOut();
+
+      return true;
+    } catch (e) {
+      print('\n\n\nLog out failed: $e');
+    }
+
+    return false;
   }
 
   Future<bool> register(UserResponse response) async {

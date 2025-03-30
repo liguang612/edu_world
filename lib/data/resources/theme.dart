@@ -9,14 +9,21 @@ class AppTextTheme {
     fontSize: 24,
   );
 
-  // Normal
+  // Medium
   static const interMedium14 = TextStyle(
     color: AppColor.white,
     fontFamily: 'Inter',
     fontSize: 14,
     fontVariations: [FontVariation.weight(500)],
   );
+  static const interMedium24 = TextStyle(
+    color: AppColor.black,
+    fontFamily: 'Inter',
+    fontSize: 24,
+    fontVariations: [FontVariation.weight(500)],
+  );
 
+  // Regular
   static const interRegular12 = TextStyle(
     color: AppColor.black,
     fontFamily: 'Inter',
@@ -28,6 +35,13 @@ class AppTextTheme {
     color: AppColor.black,
     fontFamily: 'Inter',
     fontSize: 14,
+    fontVariations: [FontVariation.weight(400)],
+  );
+
+  static const interRegular16 = TextStyle(
+    color: AppColor.black,
+    fontFamily: 'Inter',
+    fontSize: 16,
     fontVariations: [FontVariation.weight(400)],
   );
 
@@ -50,5 +64,13 @@ class AppTextTheme {
     fontFamily: 'Inter',
     fontSize: 24,
     fontVariations: [FontVariation.weight(400)],
+  );
+
+  // Semi bold
+  static const interSemiBold18 = TextStyle(
+    color: AppColor.purple01,
+    fontFamily: 'Inter',
+    fontSize: 18,
+    fontVariations: [FontVariation.weight(600)],
   );
 }
