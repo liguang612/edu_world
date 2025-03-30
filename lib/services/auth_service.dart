@@ -50,21 +50,6 @@ class AuthService {
     return rawData.map((e) => e.toString()).toList();
   }
 
-  Future<bool> logOut() async {
-    try {
-      final GoogleSignIn googleSignIn = GoogleSignIn();
-      await googleSignIn.signOut();
-
-      await FirebaseAuth.instance.signOut();
-
-      return true;
-    } catch (e) {
-      print('\n\n\nLog out failed: $e');
-    }
-
-    return false;
-  }
-
   Future<bool> register(UserResponse response) async {
     try {
       await userRef.doc(response.id).set(response.toMap());
