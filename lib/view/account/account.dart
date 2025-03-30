@@ -4,6 +4,7 @@ import 'package:edu_world/data/resources/colors.dart';
 import 'package:edu_world/data/resources/resources.dart';
 import 'package:edu_world/data/resources/theme.dart';
 import 'package:edu_world/di/di.dart';
+import 'package:edu_world/model/entity/user.dart';
 import 'package:edu_world/shared/utils/ext/build_context_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -83,11 +84,14 @@ class Account extends StatelessWidget {
                 child: Row(children: [
                   Expanded(
                       child: TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'Chỉnh sửa',
-                      style: AppTextTheme.interSemiBold18,
-                    ),
+                    onPressed: () {
+                      if (state is GetAccountInfoSuccess) {
+                        _onEdit(context, state.user);
+                      } else {
+                        Fluttertoast.showToast(msg: 'Đang đợi lấy thông tin');
+                      }
+                    },
+                    child: const Text('Chỉnh sửa', style: AppTextTheme.interSemiBold18),
                   )),
                   const SizedBox(
                     height: 24,
@@ -125,7 +129,13 @@ class Account extends StatelessWidget {
     );
   }
 
-  void _onEdit() {}
+  void _onEdit(BuildContext context, User user) {
+    Navigator.pushNamed(
+      context,
+      AppRoute.editAccount,
+      arguments: EditAccountArgs(user),
+    );
+  }
 
   void _onLogout() => bloc.add(Logout());
 }

@@ -45,12 +45,12 @@ class RegisterSubmit extends RegisterEvent {
 
   const RegisterSubmit({
     required this.name,
-    required this.birth,
+    this.birth,
     required this.phone,
-    required this.province,
-    required this.district,
-    required this.role,
-    required this.school,
+    this.province,
+    this.district,
+    this.role,
+    this.school,
     required this.Class,
   });
 

@@ -1,4 +1,5 @@
 import 'package:edu_world/model/entity/user.dart';
+import 'package:edu_world/view/account/edit_account.dart';
 import 'package:edu_world/view/home/home.dart';
 import 'package:edu_world/view/login/login.dart';
 import 'package:edu_world/view/onboarding/onboarding.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/material.dart';
 
 class AppRoute {
   // Authentication
+  static const String editAccount = '/editAccount';
   static const String login = '/login';
   static const String onboarding = '/onboarding';
   static const String register = '/register';
@@ -21,6 +23,8 @@ class AppRoute {
   static Route? onGenerateRoute(RouteSettings settings) {
     switch (settings.name!) {
       // Authentication
+      case AppRoute.editAccount:
+        return MaterialPageRoute(builder: (context) => EditAccount(), settings: settings);
       case AppRoute.login:
         return MaterialPageRoute(builder: (context) => Login(), settings: settings);
       case AppRoute.onboarding:
@@ -40,6 +44,12 @@ class AppRoute {
         return null;
     }
   }
+}
+
+class EditAccountArgs {
+  final User user;
+
+  const EditAccountArgs(this.user);
 }
 
 class HomepageArgs {

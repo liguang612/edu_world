@@ -1,11 +1,11 @@
 import 'package:edu_world/bloc/register/register_bloc.dart';
 import 'package:edu_world/config/routes.dart';
-import 'package:edu_world/data/local/local_data_access.dart';
 import 'package:edu_world/data/resources/colors.dart';
 import 'package:edu_world/data/resources/resources.dart';
 import 'package:edu_world/data/resources/theme.dart';
 import 'package:edu_world/di/di.dart';
 import 'package:edu_world/shared/utils/ext/build_context_ext.dart';
+import 'package:edu_world/shared/utils/ext/date_time_ext.dart';
 import 'package:edu_world/shared/widgets/dropdown.dart';
 import 'package:edu_world/shared/widgets/radio_button.dart';
 import 'package:edu_world/view/onboarding/onboarding.dart';
@@ -15,6 +15,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+// ignore: must_be_immutable
 class Register extends StatelessWidget {
   final RegisterBloc bloc = getIt.get();
 
@@ -23,11 +24,9 @@ class Register extends StatelessWidget {
   final TextEditingController phoneController = TextEditingController();
 
   String? province, district, school;
-  int _class = 0;
+  int? _class;
   final GlobalKey<RadioButtonState> roleKey = GlobalKey();
   DateTime? birth;
-
-  final LocalDataAccess _localDataAccess = getIt.get();
 
   Register({super.key}) {
     bloc.add(GetProvince());
@@ -53,7 +52,7 @@ class Register extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Onboarding(),
+                      builder: (context) => const Onboarding(),
                     ));
               } else if (state is RegisterUserFailed) {
                 Fluttertoast.showToast(msg: state.message);
@@ -111,7 +110,6 @@ class Register extends StatelessWidget {
                             isDense: true,
                             suffixIcon: IconButton(
                               onPressed: () {
-                                print('selectdate');
                                 _selectDate(context);
                               },
                               icon: const Icon(Icons.edit_calendar_outlined, color: AppColor.gray02),
@@ -138,8 +136,7 @@ class Register extends StatelessWidget {
                             label: 'Tỉnh / Thành phố',
                             onChanged: (grade) {
                               province = grade;
-                              district = school = null;
-                              _class = 0;
+                              district = school = _class = null;
 
                               bloc.add(GetDistricts(grade ?? ''));
                             },
@@ -157,7 +154,7 @@ class Register extends StatelessWidget {
                             label: 'Quận / Huyện',
                             onChanged: (grade) {
                               district = grade;
-                              school = null;
+                              school = _class = null;
 
                               bloc.add(GetSchools(district ?? ''));
                             },
@@ -180,7 +177,7 @@ class Register extends StatelessWidget {
                                 label: 'Trường',
                                 onChanged: (grade) {
                                   school = grade;
-                                  _class = 0;
+                                  _class = null;
 
                                   bloc.add(GetClasses(grade));
                                 },
@@ -252,12 +249,7 @@ class Register extends StatelessWidget {
 
     if (picked != null) {
       birth = picked;
-
-      // Format the date as dd/MM/yyyy
-      final formattedDate = "${picked.day.toString().padLeft(2, '0')}/"
-          "${picked.month.toString().padLeft(2, '0')}/"
-          "${picked.year}";
-      birthController.text = formattedDate;
+      birthController.text = picked.formattedString;
     }
   }
 
@@ -270,7 +262,7 @@ class Register extends StatelessWidget {
       district: district,
       role: roleKey.currentState?.indexSelected,
       school: school,
-      Class: _class,
+      Class: _class ?? 0,
     ));
   }
 }

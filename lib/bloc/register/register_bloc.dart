@@ -27,6 +27,8 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   }
 
   FutureOr<void> _onRegister(RegisterSubmit event, Emitter<RegisterState> emit) async {
+    emit(Registering());
+
     final output = await _registerUsecase.execute(RegisterInput(
       name: event.name,
       birth: event.birth,
