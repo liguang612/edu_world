@@ -5,6 +5,7 @@ import 'package:edu_world/view/login/login.dart';
 import 'package:edu_world/view/onboarding/onboarding.dart';
 import 'package:edu_world/view/register/register.dart';
 import 'package:edu_world/view/splash/splash.dart';
+import 'package:edu_world/view/tools.dart';
 import 'package:flutter/material.dart';
 
 class AppRoute {
@@ -38,7 +39,7 @@ class AppRoute {
 
       // Splash
       case AppRoute.splash:
-        return MaterialPageRoute(builder: (context) => Splash(), settings: settings);
+        return MaterialPageRoute(builder: (context) => Tools(), settings: settings);
 
       default:
         return null;
