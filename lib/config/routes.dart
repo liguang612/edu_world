@@ -39,7 +39,7 @@ class AppRoute {
 
       // Splash
       case AppRoute.splash:
-        return MaterialPageRoute(builder: (context) => Tools(), settings: settings);
+        return MaterialPageRoute(builder: (context) => Splash(), settings: settings);
 
       default:
         return null;

@@ -10,6 +10,7 @@ class LoginRepository {
   final AuthService service = getIt.get();
   final GoogleSignIn googleSignIn = GoogleSignIn(scopes: [
     'email',
+    'profile',
     'https://www.googleapis.com/auth/admin.directory.customer.readonly',
   ]);
 
