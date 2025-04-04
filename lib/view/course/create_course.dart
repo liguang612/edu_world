@@ -87,10 +87,22 @@ class CreateCourse extends StatelessWidget {
                 children: ['_tags'].map((tag) {
                   return Chip(
                     label: Text(tag),
-                    deleteIcon: Icon(Icons.close),
+                    deleteIcon: const Icon(Icons.close),
                     onDeleted: () => print('removed'),
                   );
                 }).toList(),
+              ),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColor.purple01,
+                    padding: const EdgeInsets.symmetric(vertical: 15),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                  ),
+                  child: const Text('Tạo lớp học', style: AppTextTheme.interMedium14),
+                ),
               ),
             ]),
           ),
