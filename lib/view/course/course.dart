@@ -1,8 +1,10 @@
 import 'package:edu_world/config/routes.dart';
 import 'package:edu_world/data/resources/colors.dart';
+import 'package:edu_world/data/resources/resources.dart';
 import 'package:edu_world/data/resources/theme.dart';
 import 'package:edu_world/shared/utils/ext/build_context_ext.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class Course extends StatelessWidget {
   const Course({super.key});
@@ -11,7 +13,15 @@ class Course extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(children: [
-        const Center(child: Text('Course')),
+        Center(
+            child: Column(mainAxisSize: MainAxisSize.min, children: [
+          SvgPicture.asset(Assets.icEmptyCourse),
+          const SizedBox(height: 18),
+          Text(
+            'Bạn chưa tạo lớp học nào',
+            style: AppTextTheme.interRegular20.copyWith(color: AppColor.black.withOpacity(0.3)),
+          ),
+        ])),
         Positioned(
           bottom: 12,
           child: SizedBox(

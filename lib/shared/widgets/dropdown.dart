@@ -6,8 +6,9 @@ class Dropdown<T> extends StatefulWidget {
   final String? hint;
   final TextStyle? hintStyle;
   final List<T> items;
-  final Function(T?) onChanged;
   final String? label;
+  final TextStyle? labelStyle;
+  final Function(T?) onChanged;
   final TextStyle? style;
   final T? initialValue;
 
@@ -17,6 +18,7 @@ class Dropdown<T> extends StatefulWidget {
     this.hintStyle,
     required this.items,
     this.label,
+    this.labelStyle,
     required this.onChanged,
     this.style,
     this.initialValue,
@@ -31,7 +33,7 @@ class _DropdownState<T> extends State<Dropdown<T>> {
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       if (widget.label != null) ...[
-        Text('${widget.label}', style: AppTextTheme.interRegular14),
+        Text('${widget.label}', style: widget.labelStyle ?? AppTextTheme.interRegular14),
         const SizedBox(height: 8)
       ],
       DropdownButtonFormField<T>(
