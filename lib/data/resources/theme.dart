@@ -32,6 +32,13 @@ class AppTextTheme {
   );
 
   // Regular
+  static const interRegular10 = TextStyle(
+    color: AppColor.black,
+    fontFamily: 'Inter',
+    fontSize: 10,
+    fontVariations: [FontVariation.weight(400)],
+  );
+
   static const interRegular12 = TextStyle(
     color: AppColor.black,
     fontFamily: 'Inter',
