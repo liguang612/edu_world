@@ -23,6 +23,7 @@ class CustomTextField extends StatelessWidget {
         controller: controller,
         decoration: InputDecoration(
           border: const OutlineInputBorder(borderSide: BorderSide(color: AppColor.gray08)),
+          enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: AppColor.gray08)),
           hintStyle: AppTextTheme.interRegular12.copyWith(color: AppColor.gray07),
           hintText: hint,
         ),
