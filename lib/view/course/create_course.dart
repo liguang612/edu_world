@@ -146,18 +146,29 @@ class _CreateCourseState extends State<CreateCourse> {
                             .toList()),
                   ),
                   const SizedBox(height: 10),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: _onCreateCourse,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColor.purple01,
-                        padding: const EdgeInsets.symmetric(vertical: 15),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                  BlocListener<CreateCourseBloc, CreateCourseState>(
+                    listener: (context, state) {
+                      if (state is CreateCourseSuccess) {
+                        Fluttertoast.showToast(msg: state.message ?? '');
+                        Navigator.pop(context);
+                      } else if (state is CreateCourseFailed) {
+                        Fluttertoast.showToast(msg: state.message ?? '');
+                      }
+                    },
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: _onCreateCourse,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColor.purple01,
+                          padding: const EdgeInsets.symmetric(vertical: 15),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                        ),
+                        child: const Text('Tạo lớp học', style: AppTextTheme.interMedium14),
                       ),
-                      child: const Text('Tạo lớp học', style: AppTextTheme.interMedium14),
                     ),
                   ),
+                  const SizedBox(height: 10),
                 ]),
               ),
             ),
@@ -180,14 +191,14 @@ class _CreateCourseState extends State<CreateCourse> {
   }
 
   _onCreateCourse() async {
-    // bloc.add(CreateNewCourse(
-    //   description: _descriptionController.text,
-    //   mediaPath: _mediaPath,
-    //   name: _nameController.text,
-    //   subjectId: _subjectId,
-    //   studentIds: students,
-    //   tAIds: tAs,
-    // ));
+    bloc.add(CreateNewCourse(
+      description: _descriptionController.text,
+      mediaPath: _mediaPath,
+      name: _nameController.text,
+      subjectId: _subjectId,
+      studentIds: students,
+      tAIds: tAs,
+    ));
   }
 
   Future<void> _onSelectWallpaper() async {

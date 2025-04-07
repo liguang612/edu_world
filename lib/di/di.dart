@@ -11,6 +11,8 @@ import 'package:edu_world/domain/repository/login_repository.dart';
 import 'package:edu_world/domain/repository/register_repository.dart';
 import 'package:edu_world/services/auth_service.dart';
 import 'package:edu_world/services/course_service.dart';
+import 'package:edu_world/services/storage_service.dart';
+import 'package:edu_world/usecase/create_course_usecase.dart';
 import 'package:edu_world/usecase/get_account_info_usecase.dart';
 import 'package:edu_world/usecase/get_classes_usecase.dart';
 import 'package:edu_world/usecase/get_next_route_usecase.dart';
@@ -31,6 +33,7 @@ configureInjection() async {
   // Database
   getIt.registerLazySingleton(() => AuthService());
   getIt.registerLazySingleton(() => CourseService());
+  getIt.registerLazySingleton(() => StorageService());
 
   // Repository
   getIt.registerLazySingleton(() => CourseRepository());
@@ -38,6 +41,7 @@ configureInjection() async {
   getIt.registerLazySingleton(() => RegisterRepository());
 
   // Usecase
+  getIt.registerLazySingleton(() => CreateCourseUsecase());
   getIt.registerLazySingleton(() => GetAccountInfoUsecase());
   getIt.registerLazySingleton(() => GetClassesUsecase());
   getIt.registerLazySingleton(() => GetNextRouteUsecase());
