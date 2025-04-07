@@ -7,6 +7,7 @@ import 'package:edu_world/data/resources/theme.dart';
 import 'package:edu_world/di/di.dart';
 import 'package:edu_world/model/entity/subject.dart';
 import 'package:edu_world/shared/utils/ext/build_context_ext.dart';
+import 'package:edu_world/shared/utils/string_utils.dart';
 import 'package:edu_world/shared/widgets/custom_chip.dart';
 import 'package:edu_world/shared/widgets/custom_text_field.dart';
 import 'package:edu_world/shared/widgets/dropdown.dart';
@@ -27,6 +28,7 @@ class CreateCourse extends StatefulWidget {
 class _CreateCourseState extends State<CreateCourse> {
   final CreateCourseBloc bloc = getIt.get();
 
+  final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _taController = TextEditingController();
   final TextEditingController _studentController = TextEditingController();
@@ -34,13 +36,6 @@ class _CreateCourseState extends State<CreateCourse> {
   String? _mediaPath;
   String _subjectId = '';
   List<String> tAs = [], students = [];
-
-  @override
-  void initState() {
-    super.initState();
-
-    _taController.addListener(() {});
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,6 +82,8 @@ class _CreateCourseState extends State<CreateCourse> {
                   const SizedBox(height: 10),
                   CustomTextField(controller: _nameController, title: 'Tên lớp học'),
                   const SizedBox(height: 10),
+                  CustomTextField(controller: _descriptionController, maxLines: null, title: 'Thêm 1 chút mô tả'),
+                  const SizedBox(height: 10),
                   Row(mainAxisSize: MainAxisSize.min, children: [
                     Expanded(
                       flex: 93,
@@ -117,15 +114,38 @@ class _CreateCourseState extends State<CreateCourse> {
                     )
                   ]),
                   const SizedBox(height: 10),
-                  CustomTextField(controller: _taController, title: 'Cộng tác viên (Trợ giảng)'),
-                  const SizedBox(height: 10),
-                  CustomTextField(controller: _studentController, title: 'Học sinh'),
+                  CustomTextField(
+                    controller: _taController,
+                    onSubmitted: (p0) => _appendUserEmail(p0, true),
+                    title: 'Cộng tác viên (Trợ giảng)',
+                  ),
                   SizedBox(
                     width: context.screenWidth,
-                    child: const Wrap(children: [
-                      CustomChip(tag: 'tag'),
-                    ]),
+                    child: Wrap(
+                        children: tAs
+                            .map((e) => CustomChip(
+                                  onDeleted: (tag) => setState(() => tAs.remove(tag)),
+                                  tag: e,
+                                ))
+                            .toList()),
                   ),
+                  const SizedBox(height: 10),
+                  CustomTextField(
+                    controller: _studentController,
+                    onSubmitted: (p0) => _appendUserEmail(p0, false),
+                    title: 'Học sinh',
+                  ),
+                  SizedBox(
+                    width: context.screenWidth,
+                    child: Wrap(
+                        children: students
+                            .map((e) => CustomChip(
+                                  onDeleted: (tag) => setState(() => students.remove(tag)),
+                                  tag: e,
+                                ))
+                            .toList()),
+                  ),
+                  const SizedBox(height: 10),
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
@@ -147,19 +167,27 @@ class _CreateCourseState extends State<CreateCourse> {
     );
   }
 
+  void _appendUserEmail(String text, bool isTA) {
+    setState(() {
+      if (isTA) {
+        tAs.addAll(text.extractEmails());
+        _taController.clear();
+      } else {
+        students.addAll(text.extractEmails());
+        _studentController.clear();
+      }
+    });
+  }
+
   _onCreateCourse() async {
-    print(_subjectId);
-    // final wallpaper = await _onSelectWallpaper();
-
-    // if (wallpaper == null) {
-    //   return;
-    // }
-
-    // try {
-    //   await FirebaseStorage.instance.ref('uploads/wallpaper').putFile(File(wallpaper));
-    // } catch (e) {
-    //   print('\n\n\nSTORAGE ERORR: $e\n\n\n');
-    // }
+    // bloc.add(CreateNewCourse(
+    //   description: _descriptionController.text,
+    //   mediaPath: _mediaPath,
+    //   name: _nameController.text,
+    //   subjectId: _subjectId,
+    //   studentIds: students,
+    //   tAIds: tAs,
+    // ));
   }
 
   Future<void> _onSelectWallpaper() async {

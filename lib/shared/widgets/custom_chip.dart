@@ -3,9 +3,10 @@ import 'package:edu_world/data/resources/theme.dart';
 import 'package:flutter/material.dart';
 
 class CustomChip extends StatelessWidget {
+  final Function(String)? onDeleted;
   final String tag;
 
-  const CustomChip({super.key, required this.tag});
+  const CustomChip({super.key, this.onDeleted, required this.tag});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,9 @@ class CustomChip extends StatelessWidget {
         style: AppTextTheme.interRegular12.copyWith(color: AppColor.blue01),
       ),
       labelPadding: const EdgeInsets.only(left: 4),
-      onDeleted: () {},
+      onDeleted: () {
+        if (onDeleted != null) onDeleted!(tag);
+      },
       padding: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(6),

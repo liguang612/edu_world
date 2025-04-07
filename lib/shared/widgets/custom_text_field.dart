@@ -5,12 +5,18 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatelessWidget {
   final TextEditingController? controller;
   final String? hint;
+  final int? maxLines;
+  final Function(String)? onChanged;
+  final Function(String)? onSubmitted;
   final String? title;
 
   const CustomTextField({
     super.key,
     this.controller,
     this.hint,
+    this.maxLines = 1,
+    this.onChanged,
+    this.onSubmitted,
     this.title,
   });
 
@@ -27,6 +33,9 @@ class CustomTextField extends StatelessWidget {
           hintStyle: AppTextTheme.interRegular12.copyWith(color: AppColor.gray07),
           hintText: hint,
         ),
+        maxLines: maxLines,
+        onChanged: onChanged,
+        onSubmitted: onSubmitted,
         style: AppTextTheme.interRegular12,
       )
     ]);
