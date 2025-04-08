@@ -1,17 +1,18 @@
 import 'package:edu_world/di/di.dart';
 import 'package:edu_world/model/entity/course.dart';
 import 'package:edu_world/model/entity/subject.dart';
+import 'package:edu_world/model/mapper/course_mapper.dart';
 import 'package:edu_world/model/mapper/subject_mapper.dart';
 import 'package:edu_world/services/course_service.dart';
 
 class CourseRepository {
-  final CourseService _subjectService = getIt.get();
+  final CourseService _courseService = getIt.get();
 
   CourseRepository();
 
   Future<List<Subject>> getSubjects({int? grade}) async {
     try {
-      final response = await _subjectService.getSubjects(grade: grade);
+      final response = await _courseService.getSubjects(grade: grade);
 
       return response.map((e) => e.toSubject()).toList();
     } catch (e) {
@@ -21,5 +22,15 @@ class CourseRepository {
     return [];
   }
 
-  Future<List<Course>> getCourses() async {}
+  Future<List<Course>> getCourses(String userId, int role) async {
+    try {
+      final response = await _courseService.getCourses(userId, role);
+
+      return response.map((e) => e.toCourse()).toList();
+    } catch (e) {
+      print(e);
+    }
+
+    return [];
+  }
 }
