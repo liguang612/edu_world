@@ -12,6 +12,9 @@ class SharePrefHelper implements LocalDataAccess {
   void clearAccessToken() => sharedPref.remove(SharedPreferenceKeys.accessToken);
 
   @override
+  void clearRole() => sharedPref.remove(SharedPreferenceKeys.role);
+
+  @override
   void clearUserId() => sharedPref.remove(SharedPreferenceKeys.userId);
 
   // Getter
@@ -19,11 +22,17 @@ class SharePrefHelper implements LocalDataAccess {
   String? getAccessToken() => sharedPref.getString(SharedPreferenceKeys.accessToken);
 
   @override
+  int getRole() => sharedPref.getInt(SharedPreferenceKeys.role) ?? 0;
+
+  @override
   String? getUserId() => sharedPref.getString(SharedPreferenceKeys.userId);
 
   // Setter
   @override
   void setAccessToken(String accessToken) => sharedPref.setString(SharedPreferenceKeys.accessToken, accessToken);
+
+  @override
+  void setRole(int role) => sharedPref.setInt(SharedPreferenceKeys.role, role);
 
   @override
   void setUserId(String userId) => sharedPref.setString(SharedPreferenceKeys.userId, userId);
