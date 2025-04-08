@@ -38,6 +38,8 @@ class RegisterUsecase {
     );
 
     if (state) {
+      _localDataAccess.setRole(input.role!);
+
       return RegisterOutput(
           successful: state,
           user: User(
