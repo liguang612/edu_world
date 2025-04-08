@@ -1,3 +1,4 @@
+import 'package:edu_world/data/local/local_data_access.dart';
 import 'package:edu_world/di/di.dart';
 import 'package:edu_world/domain/repository/login_repository.dart';
 import 'package:edu_world/model/entity/user.dart';
@@ -5,6 +6,8 @@ import 'package:edu_world/usecase/base/base_output.dart';
 
 class LoginUsecase {
   final LoginRepository loginRepository = getIt.get();
+
+  final LocalDataAccess _localDataAccess = getIt.get();
 
   LoginUsecase();
 
@@ -18,6 +21,7 @@ class LoginUsecase {
     final user = await loginRepository.findUser(userId);
 
     if (user != null) {
+      _localDataAccess.setRole(user.role);
       return LoginUsecaseOutput(successful: true, user: user);
     } else {
       // If login successfully but not found user -> register

@@ -67,6 +67,7 @@ class LoginRepository {
       await googleSignIn.disconnect();
 
       localDataAccess.clearAccessToken();
+      localDataAccess.clearRole();
       localDataAccess.clearUserId();
 
       return true;
