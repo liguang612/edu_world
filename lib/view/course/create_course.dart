@@ -7,7 +7,7 @@ import 'package:edu_world/data/resources/theme.dart';
 import 'package:edu_world/di/di.dart';
 import 'package:edu_world/model/entity/subject.dart';
 import 'package:edu_world/shared/utils/ext/build_context_ext.dart';
-import 'package:edu_world/shared/utils/string_utils.dart';
+import 'package:edu_world/shared/utils/ext/string_ext.dart';
 import 'package:edu_world/shared/widgets/custom_chip.dart';
 import 'package:edu_world/shared/widgets/custom_text_field.dart';
 import 'package:edu_world/shared/widgets/dropdown.dart';

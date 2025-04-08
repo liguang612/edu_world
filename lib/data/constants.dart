@@ -16,3 +16,11 @@ class CloudStorageKeys {
 }
 
 enum FileType { image, audio, video, pdf }
+
+enum UserRole {
+  student(0),
+  teacher(1);
+
+  final int value;
+  const UserRole(this.value);
+}

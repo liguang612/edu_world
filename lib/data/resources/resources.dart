@@ -4,11 +4,13 @@ class Assets {
   static const String icAccount = '$iconPrefix/account.svg';
   static const String icBirth = '$iconPrefix/birthday.svg';
   static const String icCourse = '$iconPrefix/course.svg';
+  static const String icDefaultCourseWallpaper = '$iconPrefix/default_course_wallpaper.svg';
   static const String icEmail = '$iconPrefix/email.svg';
   static const String icEmptyCourse = '$iconPrefix/empty_course.svg';
   static const String icGoogle = '$iconPrefix/google.svg';
   static const String icHome = '$iconPrefix/home.svg';
   static const String icImage = '$iconPrefix/image.svg';
+  static const String icLecture = '$iconPrefix/lecture.svg';
   static const String icLogo = '$iconPrefix/logo.svg';
   static const String icOnboarding1 = '$iconPrefix/onboarding1.svg';
   static const String icOnboarding2 = '$iconPrefix/onboarding2.svg';

@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 import 'package:edu_world/model/entity/chapter.dart';
 
 class Course {
@@ -26,6 +24,16 @@ class Course {
     required this.visible,
     this.wallpaper,
   });
+
+  List<String> lectureIds() {
+    final lectures = <String>[];
+
+    for (var chapter in chapters ?? []) {
+      lectures.addAll(chapter.lectureIds);
+    }
+
+    return lectures;
+  }
 
   Course copyWith({
     List<String>? allCategories,
@@ -56,35 +64,5 @@ class Course {
   @override
   String toString() {
     return 'Course(allCategories: $allCategories, chapters: $chapters, description: $description, name: $name, studentIds: $studentIds, subjectId: $subjectId, tAIds: $tAIds, teacherId: $teacherId, visible: $visible, wallpaper: $wallpaper)';
-  }
-
-  @override
-  bool operator ==(covariant Course other) {
-    if (identical(this, other)) return true;
-
-    return listEquals(other.allCategories, allCategories) &&
-        listEquals(other.chapters, chapters) &&
-        other.description == description &&
-        other.name == name &&
-        listEquals(other.studentIds, studentIds) &&
-        other.subjectId == subjectId &&
-        listEquals(other.tAIds, tAIds) &&
-        other.teacherId == teacherId &&
-        other.visible == visible &&
-        other.wallpaper == wallpaper;
-  }
-
-  @override
-  int get hashCode {
-    return allCategories.hashCode ^
-        chapters.hashCode ^
-        description.hashCode ^
-        name.hashCode ^
-        studentIds.hashCode ^
-        subjectId.hashCode ^
-        tAIds.hashCode ^
-        teacherId.hashCode ^
-        visible.hashCode ^
-        wallpaper.hashCode;
   }
 }

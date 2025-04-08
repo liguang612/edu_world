@@ -1,4 +1,5 @@
 import 'package:edu_world/di/di.dart';
+import 'package:edu_world/model/entity/course.dart';
 import 'package:edu_world/model/entity/subject.dart';
 import 'package:edu_world/model/mapper/subject_mapper.dart';
 import 'package:edu_world/services/course_service.dart';
@@ -19,4 +20,6 @@ class CourseRepository {
 
     return [];
   }
+
+  Future<List<Course>> getCourses() async {}
 }
