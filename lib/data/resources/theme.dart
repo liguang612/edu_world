@@ -82,6 +82,20 @@ class AppTextTheme {
   );
 
   // Semi bold
+  static const interSemiBold10 = TextStyle(
+    color: AppColor.purple01,
+    fontFamily: 'Inter',
+    fontSize: 10,
+    fontVariations: [FontVariation.weight(600)],
+  );
+
+  static const interSemiBold12 = TextStyle(
+    color: AppColor.black,
+    fontFamily: 'Inter',
+    fontSize: 12,
+    fontVariations: [FontVariation.weight(600)],
+  );
+
   static const interSemiBold18 = TextStyle(
     color: AppColor.purple01,
     fontFamily: 'Inter',

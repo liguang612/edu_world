@@ -32,7 +32,6 @@ class _CreateCourseState extends State<CreateCourse> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _taController = TextEditingController();
   final TextEditingController _studentController = TextEditingController();
-  int _grade = 0;
   String? _mediaPath;
   String _subjectId = '';
   List<String> tAs = [], students = [];
@@ -91,10 +90,7 @@ class _CreateCourseState extends State<CreateCourse> {
                         items: const [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
                         label: 'Khối',
                         labelStyle: AppTextTheme.interRegular12,
-                        onChanged: (p0) {
-                          _grade = p0 ?? 0;
-                          bloc.add(GetSubjects(p0));
-                        },
+                        onChanged: (p0) => bloc.add(GetSubjects(p0)),
                       ),
                     ),
                     const SizedBox(width: 10),

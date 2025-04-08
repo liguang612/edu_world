@@ -1,5 +1,6 @@
 import 'package:edu_world/bloc/account/account_bloc.dart';
 import 'package:edu_world/bloc/course/create/create_course_bloc.dart';
+import 'package:edu_world/bloc/course/list/course_list_bloc.dart';
 import 'package:edu_world/bloc/login/login_bloc.dart';
 import 'package:edu_world/bloc/onboarding/onboarding_bloc.dart';
 import 'package:edu_world/bloc/register/register_bloc.dart';
@@ -15,6 +16,7 @@ import 'package:edu_world/services/storage_service.dart';
 import 'package:edu_world/usecase/create_course_usecase.dart';
 import 'package:edu_world/usecase/get_account_info_usecase.dart';
 import 'package:edu_world/usecase/get_classes_usecase.dart';
+import 'package:edu_world/usecase/get_courses_usecase.dart';
 import 'package:edu_world/usecase/get_next_route_usecase.dart';
 import 'package:edu_world/usecase/log_out_usecase.dart';
 import 'package:edu_world/usecase/login_usecase.dart';
@@ -44,6 +46,7 @@ configureInjection() async {
   getIt.registerLazySingleton(() => CreateCourseUsecase());
   getIt.registerLazySingleton(() => GetAccountInfoUsecase());
   getIt.registerLazySingleton(() => GetClassesUsecase());
+  getIt.registerLazySingleton(() => GetCoursesUsecase());
   getIt.registerLazySingleton(() => GetNextRouteUsecase());
   getIt.registerLazySingleton(() => LoginUsecase());
   getIt.registerLazySingleton(() => LogOutUsecase());
@@ -51,6 +54,7 @@ configureInjection() async {
 
   // Bloc
   getIt.registerLazySingleton(() => AccountBloc());
+  getIt.registerLazySingleton(() => CourseListBloc());
   getIt.registerLazySingleton(() => CreateCourseBloc());
   getIt.registerLazySingleton(() => LoginBloc());
   getIt.registerLazySingleton(() => OnboardingBloc());

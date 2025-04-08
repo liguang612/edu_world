@@ -18,6 +18,7 @@ class Assets {
   static const String icPhone = '$iconPrefix/phone.svg';
   static const String icProfile = '$iconPrefix/profile.svg';
   static const String icRect36 = '$iconPrefix/rectangle_36.svg';
+  static const String icStudents = '$iconPrefix/students.svg';
 
   // images
   static const String imagePrefix = 'assets/images';

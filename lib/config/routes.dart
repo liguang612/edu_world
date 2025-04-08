@@ -38,7 +38,7 @@ class AppRoute {
 
       // Course
       case AppRoute.createCourse:
-        return MaterialPageRoute(builder: (context) => CreateCourse(), settings: settings);
+        return MaterialPageRoute(builder: (context) => const CreateCourse(), settings: settings);
 
       // Home
       case AppRoute.home:
