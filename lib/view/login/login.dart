@@ -33,7 +33,7 @@ class Login extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Onboarding(),
+                  builder: (context) => const Onboarding(),
                 ));
           } else if (state is LoginFailedState) {
             Fluttertoast.showToast(msg: 'Có lỗi xảy ra! Vui lòng thử lại');
