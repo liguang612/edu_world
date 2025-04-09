@@ -1,12 +1,17 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter/material.dart';
+
+import 'package:edu_world/bloc/course/course_bloc.dart';
+import 'package:edu_world/model/entity/course.dart';
 import 'package:edu_world/model/entity/user.dart';
 import 'package:edu_world/view/account/edit_account.dart';
+import 'package:edu_world/view/course/course_detail.dart';
 import 'package:edu_world/view/course/create_course.dart';
 import 'package:edu_world/view/home/home.dart';
 import 'package:edu_world/view/login/login.dart';
 import 'package:edu_world/view/onboarding/onboarding.dart';
 import 'package:edu_world/view/register/register.dart';
 import 'package:edu_world/view/splash/splash.dart';
-import 'package:flutter/material.dart';
 
 class AppRoute {
   // Authentication
@@ -17,6 +22,7 @@ class AppRoute {
 
   // Course
   static const String createCourse = '/createCourse';
+  static const String detailCourse = '/detailCourse';
 
   // Home
   static const String home = '/home';
@@ -39,6 +45,8 @@ class AppRoute {
       // Course
       case AppRoute.createCourse:
         return MaterialPageRoute(builder: (context) => const CreateCourse(), settings: settings);
+      case AppRoute.detailCourse:
+        return MaterialPageRoute(builder: (context) => const CourseDetail(), settings: settings);
 
       // Home
       case AppRoute.home:
@@ -52,6 +60,13 @@ class AppRoute {
         return null;
     }
   }
+}
+
+class CourseDetailArgs {
+  final Course course;
+  final CourseBloc bloc;
+
+  const CourseDetailArgs(this.course, this.bloc);
 }
 
 class EditAccountArgs {
