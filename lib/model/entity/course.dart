@@ -2,6 +2,7 @@ import 'package:edu_world/model/entity/chapter.dart';
 import 'package:edu_world/model/entity/subject.dart';
 
 class Course {
+  final String id;
   final List<String>? allCategories;
   final List<Chapter>? chapters;
   final String description;
@@ -12,8 +13,8 @@ class Course {
   final String teacherId;
   final bool visible;
   final String? wallpaper;
-
   Course({
+    required this.id,
     this.allCategories,
     this.chapters,
     required this.description,
@@ -26,17 +27,17 @@ class Course {
     this.wallpaper,
   });
 
-  List<String> lectureIds() {
-    final lectures = <String>[];
-
-    for (var chapter in chapters ?? []) {
-      lectures.addAll(chapter.lectureIds);
+  List<int> lectureIds() {
+    final List<int> res = [];
+    for (Chapter chapter in chapters ?? []) {
+      res.add(chapter.id);
     }
 
-    return lectures;
+    return res;
   }
 
   Course copyWith({
+    String? id,
     List<String>? allCategories,
     List<Chapter>? chapters,
     String? description,
@@ -49,6 +50,7 @@ class Course {
     String? wallpaper,
   }) {
     return Course(
+      id: id ?? this.id,
       allCategories: allCategories ?? this.allCategories,
       chapters: chapters ?? this.chapters,
       description: description ?? this.description,

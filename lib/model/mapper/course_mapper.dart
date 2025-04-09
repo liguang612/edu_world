@@ -7,6 +7,7 @@ extension CourseMapper on CourseResponse {
     required Subject subject,
   }) {
     return Course(
+      id: id,
       description: description,
       name: name,
       subject: subject,
@@ -21,6 +22,7 @@ extension CourseMapper on CourseResponse {
 extension CourseResponseMapper on Course {
   CourseResponse toCourseResponse() {
     return CourseResponse(
+      id: id,
       description: description,
       name: name,
       subjectId: subject.id,

@@ -33,6 +33,7 @@ class CreateCourseBloc extends Bloc<CreateCourseEvent, CreateCourseState> {
 
   FutureOr<void> _onCreateNewCourse(CreateNewCourse event, Emitter<CreateCourseState> emit) async {
     final output = await _createCourseUsecase.execute(CreateCourseInput(CourseResponse(
+      id: '',
       description: event.description,
       name: event.name,
       subjectId: event.subjectId,

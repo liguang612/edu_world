@@ -1,16 +1,22 @@
+import 'package:edu_world/bloc/course/course_bloc.dart';
 import 'package:edu_world/data/resources/colors.dart';
 import 'package:edu_world/data/resources/resources.dart';
 import 'package:edu_world/data/resources/theme.dart';
 import 'package:edu_world/model/entity/course.dart';
 import 'package:edu_world/shared/utils/ext/build_context_ext.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/svg.dart';
 
 class CourseItem extends StatelessWidget {
   final Course course;
 
-  const CourseItem(this.course, {super.key});
+  final CourseBloc bloc = CourseBloc();
+
+  CourseItem(this.course, {super.key}) {
+    bloc.add(GetReviews(course.id));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,17 +68,26 @@ class CourseItem extends StatelessWidget {
                   style: AppTextTheme.interRegular10.copyWith(color: AppColor.gray03))
             ]),
             const SizedBox(height: 12),
-            Row(children: [
-              RatingBarIndicator(
-                rating: 3.87,
-                itemBuilder: (context, index) => const Icon(Icons.star, color: Colors.amber),
-                itemCount: 5,
-                itemSize: 30.0,
-                direction: Axis.horizontal,
-              ),
-              const SizedBox(width: 10),
-              const Text('(3.87)', style: AppTextTheme.interRegular10)
-            ]),
+            BlocBuilder<CourseBloc, CourseState>(
+              bloc: bloc,
+              buildWhen: (previous, current) => current is GetReviewsScoreAverageSuccess,
+              builder: (context, state) {
+                return Row(children: [
+                  RatingBarIndicator(
+                    rating: state is GetReviewsScoreAverageSuccess ? state.score : 0,
+                    itemBuilder: (context, index) => const Icon(Icons.star, color: Colors.amber),
+                    itemCount: 5,
+                    itemSize: 30.0,
+                    direction: Axis.horizontal,
+                  ),
+                  const SizedBox(width: 10),
+                  Text(
+                    '(${state is GetReviewsScoreAverageSuccess ? state.scoreStr : ''})',
+                    style: AppTextTheme.interRegular10,
+                  )
+                ]);
+              },
+            ),
             const SizedBox(height: 16),
             Row(children: [
               ElevatedButton(

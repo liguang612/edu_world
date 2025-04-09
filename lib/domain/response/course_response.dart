@@ -1,4 +1,5 @@
 class CourseResponse {
+  final String id;
   final List<String>? allCategories;
   final List<Map<String, dynamic>>? chapters;
   final String description;
@@ -11,6 +12,7 @@ class CourseResponse {
   final String? wallpaper;
 
   CourseResponse({
+    required this.id,
     this.allCategories,
     this.chapters,
     required this.description,
@@ -24,6 +26,7 @@ class CourseResponse {
   });
 
   CourseResponse copyWith({
+    String? id,
     List<String>? allCategories,
     List<Map<String, dynamic>>? chapters,
     String? description,
@@ -36,6 +39,7 @@ class CourseResponse {
     String? wallpaper,
   }) {
     return CourseResponse(
+      id: id ?? this.id,
       allCategories: allCategories ?? this.allCategories,
       chapters: chapters ?? this.chapters,
       description: description ?? this.description,
@@ -64,8 +68,9 @@ class CourseResponse {
     };
   }
 
-  factory CourseResponse.fromMap(Map<String, dynamic> map) {
+  factory CourseResponse.fromMap(String id, Map<String, dynamic> map) {
     return CourseResponse(
+      id: id,
       allCategories: map['allCategories'] != null
           ? List.from(map['allCategories'] as List<dynamic>).map((e) => e.toString()).toList()
           : null,
