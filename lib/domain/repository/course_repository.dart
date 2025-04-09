@@ -1,4 +1,5 @@
 import 'package:edu_world/di/di.dart';
+import 'package:edu_world/domain/response/subject_response.dart';
 import 'package:edu_world/model/entity/course.dart';
 import 'package:edu_world/model/entity/subject.dart';
 import 'package:edu_world/model/mapper/course_mapper.dart';
@@ -24,9 +25,20 @@ class CourseRepository {
 
   Future<List<Course>> getCourses(String userId, int role) async {
     try {
+      final subjects = await _courseService.getSubjects();
+
       final response = await _courseService.getCourses(userId, role);
 
-      return response.map((e) => e.toCourse()).toList();
+      return response
+          .map((e) => e.toCourse(
+                subject: subjects
+                    .firstWhere(
+                      (element) => element.id == e.subjectId,
+                      orElse: () => SubjectResponse.emptyResponse,
+                    )
+                    .toSubject(),
+              ))
+          .toList();
     } catch (e) {
       print(e);
     }

@@ -1,4 +1,5 @@
 import 'package:edu_world/model/entity/chapter.dart';
+import 'package:edu_world/model/entity/subject.dart';
 
 class Course {
   final List<String>? allCategories;
@@ -6,7 +7,7 @@ class Course {
   final String description;
   final String name;
   final List<String>? studentIds;
-  final String subjectId;
+  final Subject subject;
   final List<String> tAIds;
   final String teacherId;
   final bool visible;
@@ -18,7 +19,7 @@ class Course {
     required this.description,
     required this.name,
     this.studentIds,
-    required this.subjectId,
+    required this.subject,
     required this.tAIds,
     required this.teacherId,
     required this.visible,
@@ -41,7 +42,7 @@ class Course {
     String? description,
     String? name,
     List<String>? studentIds,
-    String? subjectId,
+    Subject? subject,
     List<String>? tAIds,
     String? teacherId,
     bool? visible,
@@ -53,16 +54,11 @@ class Course {
       description: description ?? this.description,
       name: name ?? this.name,
       studentIds: studentIds ?? this.studentIds,
-      subjectId: subjectId ?? this.subjectId,
+      subject: subject ?? this.subject,
       tAIds: tAIds ?? this.tAIds,
       teacherId: teacherId ?? this.teacherId,
       visible: visible ?? this.visible,
       wallpaper: wallpaper ?? this.wallpaper,
     );
-  }
-
-  @override
-  String toString() {
-    return 'Course(allCategories: $allCategories, chapters: $chapters, description: $description, name: $name, studentIds: $studentIds, subjectId: $subjectId, tAIds: $tAIds, teacherId: $teacherId, visible: $visible, wallpaper: $wallpaper)';
   }
 }

@@ -2,7 +2,8 @@ class SubjectResponse {
   final String id;
   final String name;
   final int grade;
-  SubjectResponse({
+
+  const SubjectResponse({
     required this.id,
     required this.name,
     required this.grade,
@@ -30,4 +31,6 @@ class SubjectResponse {
 
   @override
   String toString() => 'SubjectResponse(id: $id, name: $name, grade: $grade)';
+
+  static const SubjectResponse emptyResponse = SubjectResponse(id: '', name: '', grade: 0);
 }

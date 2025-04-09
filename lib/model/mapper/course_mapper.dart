@@ -1,12 +1,15 @@
 import 'package:edu_world/domain/response/course_response.dart';
 import 'package:edu_world/model/entity/course.dart';
+import 'package:edu_world/model/entity/subject.dart';
 
 extension CourseMapper on CourseResponse {
-  Course toCourse() {
+  Course toCourse({
+    required Subject subject,
+  }) {
     return Course(
       description: description,
       name: name,
-      subjectId: subjectId,
+      subject: subject,
       tAIds: tAIds ?? [],
       teacherId: teacherId,
       visible: visible,
@@ -20,7 +23,7 @@ extension CourseResponseMapper on Course {
     return CourseResponse(
       description: description,
       name: name,
-      subjectId: subjectId,
+      subjectId: subject.id,
       teacherId: teacherId,
       visible: visible,
       wallpaper: wallpaper,

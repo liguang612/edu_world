@@ -28,7 +28,7 @@ class CourseItem extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(6), color: AppColor.white),
                 padding: const EdgeInsets.symmetric(horizontal: 21, vertical: 10),
-                child: const Text('Biology', style: AppTextTheme.interSemiBold10),
+                child: Text(course.subject.name, style: AppTextTheme.interSemiBold10),
               ),
             ),
           ]),

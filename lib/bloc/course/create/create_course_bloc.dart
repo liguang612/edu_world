@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:edu_world/data/local/local_data_access.dart';
 import 'package:edu_world/di/di.dart';
 import 'package:edu_world/domain/repository/course_repository.dart';
-import 'package:edu_world/model/entity/course.dart';
+import 'package:edu_world/domain/response/course_response.dart';
 import 'package:edu_world/model/entity/subject.dart';
 import 'package:edu_world/usecase/create_course_usecase.dart';
 import 'package:equatable/equatable.dart';
@@ -32,7 +32,7 @@ class CreateCourseBloc extends Bloc<CreateCourseEvent, CreateCourseState> {
   }
 
   FutureOr<void> _onCreateNewCourse(CreateNewCourse event, Emitter<CreateCourseState> emit) async {
-    final output = await _createCourseUsecase.execute(CreateCourseInput(Course(
+    final output = await _createCourseUsecase.execute(CreateCourseInput(CourseResponse(
       description: event.description,
       name: event.name,
       subjectId: event.subjectId,
