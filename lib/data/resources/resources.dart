@@ -1,9 +1,12 @@
 class Assets {
   // icons
   static const String iconPrefix = 'assets/icons';
+  static const String icAccept = '$iconPrefix/accept.svg';
   static const String icAccount = '$iconPrefix/account.svg';
   static const String icBirth = '$iconPrefix/birthday.svg';
+  static const String icCancel = '$iconPrefix/cancel.svg';
   static const String icCourse = '$iconPrefix/course.svg';
+  static const String icDefaultCourseDetail = '$iconPrefix/default_course_detail.svg';
   static const String icDefaultCourseWallpaper = '$iconPrefix/default_course_wallpaper.svg';
   static const String icEmail = '$iconPrefix/email.svg';
   static const String icEmptyCourse = '$iconPrefix/empty_course.svg';

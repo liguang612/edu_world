@@ -29,5 +29,5 @@ class Subject {
   }
 
   @override
-  String toString() => name;
+  String toString() => '$name lớp $grade';
 }

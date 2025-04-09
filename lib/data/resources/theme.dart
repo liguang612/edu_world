@@ -18,12 +18,27 @@ class AppTextTheme {
   );
 
   // Medium
+  static const interMedium11 = TextStyle(
+    color: AppColor.purple01,
+    fontFamily: 'Inter',
+    fontSize: 11,
+    fontVariations: [FontVariation.weight(500)],
+  );
+
   static const interMedium14 = TextStyle(
     color: AppColor.white,
     fontFamily: 'Inter',
     fontSize: 14,
     fontVariations: [FontVariation.weight(500)],
   );
+
+  static const interMedium18 = TextStyle(
+    color: AppColor.white,
+    fontFamily: 'Inter',
+    fontSize: 18,
+    fontVariations: [FontVariation.weight(500)],
+  );
+
   static const interMedium24 = TextStyle(
     color: AppColor.black,
     fontFamily: 'Inter',
@@ -93,6 +108,13 @@ class AppTextTheme {
     color: AppColor.black,
     fontFamily: 'Inter',
     fontSize: 12,
+    fontVariations: [FontVariation.weight(600)],
+  );
+
+  static const interSemiBold16 = TextStyle(
+    color: AppColor.black,
+    fontFamily: 'Inter',
+    fontSize: 16,
     fontVariations: [FontVariation.weight(600)],
   );
 

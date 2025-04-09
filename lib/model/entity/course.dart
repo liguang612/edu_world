@@ -13,7 +13,8 @@ class Course {
   final String teacherId;
   final bool visible;
   final String? wallpaper;
-  Course({
+
+  const Course({
     required this.id,
     this.allCategories,
     this.chapters,
@@ -27,10 +28,10 @@ class Course {
     this.wallpaper,
   });
 
-  List<int> lectureIds() {
-    final List<int> res = [];
+  List<String> lectureIds() {
+    final List<String> res = [];
     for (Chapter chapter in chapters ?? []) {
-      res.add(chapter.id);
+      res.addAll(chapter.lectureIds);
     }
 
     return res;

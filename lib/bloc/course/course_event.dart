@@ -7,6 +7,16 @@ class CourseEvent extends Equatable {
   List<Object?> get props => [];
 }
 
+class AddChapter extends CourseEvent {
+  final String chapterName;
+  final String courseId;
+
+  const AddChapter(this.courseId, this.chapterName);
+
+  @override
+  List<Object?> get props => [courseId, chapterName];
+}
+
 class GetReviews extends CourseEvent {
   final String courseId;
 

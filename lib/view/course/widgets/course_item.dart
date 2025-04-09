@@ -54,7 +54,7 @@ class CourseItem extends StatelessWidget {
               Row(children: [
                 Expanded(
                   child: Text(
-                    '${course.chapters?.length ?? 0} chapters',
+                    '${course.chapters?.length ?? 0} chương',
                     style: AppTextTheme.interRegular10.copyWith(color: AppColor.gray03),
                   ),
                 ),
@@ -62,7 +62,7 @@ class CourseItem extends StatelessWidget {
                 const SizedBox(width: 2),
                 Expanded(
                   child: Text(
-                    '${course.lectureIds().length} lectures',
+                    '${course.lectureIds().length} bài giảng',
                     style: AppTextTheme.interRegular10.copyWith(color: AppColor.gray03),
                   ),
                 )
@@ -71,7 +71,7 @@ class CourseItem extends StatelessWidget {
               Row(children: [
                 SvgPicture.asset(Assets.icStudents),
                 const SizedBox(width: 10),
-                Text('${course.studentIds?.length ?? 0} students',
+                Text('${course.studentIds?.length ?? 0} học sinh',
                     style: AppTextTheme.interRegular10.copyWith(color: AppColor.gray03))
               ]),
               const SizedBox(height: 12),
@@ -81,11 +81,11 @@ class CourseItem extends StatelessWidget {
                 builder: (context, state) {
                   return Row(children: [
                     RatingBarIndicator(
-                      rating: state is GetReviewsScoreAverageSuccess ? state.score : 0,
+                      direction: Axis.horizontal,
                       itemBuilder: (context, index) => const Icon(Icons.star, color: Colors.amber),
                       itemCount: 5,
-                      itemSize: 30.0,
-                      direction: Axis.horizontal,
+                      itemSize: 20,
+                      rating: state is GetReviewsScoreAverageSuccess ? state.score : 0,
                     ),
                     const SizedBox(width: 10),
                     Text(
@@ -102,6 +102,7 @@ class CourseItem extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColor.white01,
                     elevation: 0,
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(bottomLeft: Radius.circular(6), topLeft: Radius.circular(6)),
                       side: BorderSide(color: AppColor.gray08),
@@ -114,6 +115,7 @@ class CourseItem extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColor.white01,
                     elevation: 0,
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.only(bottomRight: Radius.circular(6), topRight: Radius.circular(6)),
                       side: BorderSide(color: AppColor.gray08),
