@@ -7,7 +7,7 @@ import 'package:edu_world/data/resources/theme.dart';
 import 'package:edu_world/di/di.dart';
 import 'package:edu_world/model/entity/subject.dart';
 import 'package:edu_world/shared/utils/ext/build_context_ext.dart';
-import 'package:edu_world/shared/utils/string_utils.dart';
+import 'package:edu_world/shared/utils/ext/string_ext.dart';
 import 'package:edu_world/shared/widgets/custom_chip.dart';
 import 'package:edu_world/shared/widgets/custom_text_field.dart';
 import 'package:edu_world/shared/widgets/dropdown.dart';
@@ -32,7 +32,6 @@ class _CreateCourseState extends State<CreateCourse> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _taController = TextEditingController();
   final TextEditingController _studentController = TextEditingController();
-  int _grade = 0;
   String? _mediaPath;
   String _subjectId = '';
   List<String> tAs = [], students = [];
@@ -91,10 +90,7 @@ class _CreateCourseState extends State<CreateCourse> {
                         items: const [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
                         label: 'Khối',
                         labelStyle: AppTextTheme.interRegular12,
-                        onChanged: (p0) {
-                          _grade = p0 ?? 0;
-                          bloc.add(GetSubjects(p0));
-                        },
+                        onChanged: (p0) => bloc.add(GetSubjects(p0)),
                       ),
                     ),
                     const SizedBox(width: 10),

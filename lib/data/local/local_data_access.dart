@@ -4,7 +4,7 @@ abstract class LocalDataAccess {
   void clearUserId();
 
   String? getAccessToken();
-  int getRole();
+  int? getRole();
   String? getUserId();
 
   void setAccessToken(String accessToken);

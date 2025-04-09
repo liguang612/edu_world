@@ -22,7 +22,7 @@ class SharePrefHelper implements LocalDataAccess {
   String? getAccessToken() => sharedPref.getString(SharedPreferenceKeys.accessToken);
 
   @override
-  int getRole() => sharedPref.getInt(SharedPreferenceKeys.role) ?? 0;
+  int? getRole() => sharedPref.getInt(SharedPreferenceKeys.role);
 
   @override
   String? getUserId() => sharedPref.getString(SharedPreferenceKeys.userId);

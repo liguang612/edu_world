@@ -1,4 +1,4 @@
-extension StringUtils on String? {
+extension StringExt on String? {
   List<String> extractEmails() {
     final RegExp emailRegex = RegExp(r'[^@\s]+@[^.\s]+\.\S+');
 

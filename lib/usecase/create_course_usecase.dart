@@ -1,8 +1,7 @@
 import 'dart:io';
 
 import 'package:edu_world/di/di.dart';
-import 'package:edu_world/model/entity/course.dart';
-import 'package:edu_world/model/mapper/course_mapper.dart';
+import 'package:edu_world/domain/response/course_response.dart';
 import 'package:edu_world/services/course_service.dart';
 import 'package:edu_world/services/storage_service.dart';
 import 'package:edu_world/usecase/base/base_output.dart';
@@ -14,7 +13,7 @@ class CreateCourseUsecase {
   CreateCourseUsecase();
 
   Future<CreateCourseOutput> execute(CreateCourseInput input) async {
-    final courseId = await _courseService.createCourse(input.course.toCourseResponse());
+    final courseId = await _courseService.createCourse(input.course);
     if (courseId == null) return const CreateCourseOutput(successful: false, message: 'Có lỗi xảy ra');
 
     // If no media specified, finish this usecase.
@@ -31,7 +30,7 @@ class CreateCourseUsecase {
 }
 
 class CreateCourseInput {
-  final Course course;
+  final CourseResponse course;
 
   const CreateCourseInput(this.course);
 }
