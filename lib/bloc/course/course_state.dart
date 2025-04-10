@@ -17,6 +17,10 @@ class AddChapterSuccess extends CourseState {
 
 class AddChapterFailed extends CourseState {}
 
+class EditCourseSuccess extends CourseState {}
+
+class EditCourseFailed extends CourseState {}
+
 class GetLectureListsLoading extends CourseState {}
 
 class GetLectureListSuccess extends CourseState {

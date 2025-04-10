@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:edu_world/view/course/edit_course.dart';
 import 'package:flutter/material.dart';
 
 import 'package:edu_world/bloc/course/course_bloc.dart';
@@ -23,6 +24,7 @@ class AppRoute {
   // Course
   static const String createCourse = '/createCourse';
   static const String detailCourse = '/detailCourse';
+  static const String editCourse = '/editCourse';
 
   // Home
   static const String home = '/home';
@@ -47,6 +49,8 @@ class AppRoute {
         return MaterialPageRoute(builder: (context) => const CreateCourse(), settings: settings);
       case AppRoute.detailCourse:
         return MaterialPageRoute(builder: (context) => const CourseDetail(), settings: settings);
+      case AppRoute.editCourse:
+        return MaterialPageRoute(builder: (context) => const EditCourse(), settings: settings);
 
       // Home
       case AppRoute.home:
@@ -73,6 +77,12 @@ class EditAccountArgs {
   final User user;
 
   const EditAccountArgs(this.user);
+}
+
+class EditCourseArgs {
+  final Course course;
+
+  const EditCourseArgs(this.course);
 }
 
 class HomepageArgs {

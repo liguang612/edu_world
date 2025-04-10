@@ -115,7 +115,11 @@ class _CourseDetailState extends State<CourseDetail> {
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () => Navigator.pushNamed(
+                        context,
+                        AppRoute.editCourse,
+                        arguments: EditCourseArgs(course),
+                      ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColor.purple01,
                         padding: const EdgeInsets.symmetric(vertical: 15),

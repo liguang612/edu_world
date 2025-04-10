@@ -46,6 +46,21 @@ class CourseService {
     return null;
   }
 
+  Future<bool> editCourse({required String id, required String name, required String description}) async {
+    try {
+      await courseRef.doc(id).update({
+        'name': name,
+        'description': description,
+      });
+
+      return true;
+    } catch (e) {
+      print('EDIT COURSE ERROR: $e');
+    }
+
+    return false;
+  }
+
   Future<List<CourseResponse>> getCourses(String userId, int role) async {
     try {
       Query query = courseRef;

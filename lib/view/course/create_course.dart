@@ -142,33 +142,34 @@ class _CreateCourseState extends State<CreateCourse> {
                             .toList()),
                   ),
                   const SizedBox(height: 10),
-                  BlocListener<CreateCourseBloc, CreateCourseState>(
-                    listener: (context, state) {
-                      if (state is CreateCourseSuccess) {
-                        Fluttertoast.showToast(msg: state.message ?? '');
-                        Navigator.pop(context);
-                      } else if (state is CreateCourseFailed) {
-                        Fluttertoast.showToast(msg: state.message ?? '');
-                      }
-                    },
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: _onCreateCourse,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColor.purple01,
-                          padding: const EdgeInsets.symmetric(vertical: 15),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-                        ),
-                        child: const Text('Tạo lớp học', style: AppTextTheme.interMedium14),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
                 ]),
               ),
             ),
-          )
+          ),
+          BlocListener<CreateCourseBloc, CreateCourseState>(
+            listener: (context, state) {
+              if (state is CreateCourseSuccess) {
+                Fluttertoast.showToast(msg: state.message ?? '');
+                Navigator.pop(context);
+              } else if (state is CreateCourseFailed) {
+                Fluttertoast.showToast(msg: state.message ?? '');
+              }
+            },
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: _onCreateCourse,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColor.purple01,
+                  padding: const EdgeInsets.symmetric(vertical: 15),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                ),
+                child: const Text('Tạo lớp học', style: AppTextTheme.interMedium14),
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
         ]),
       ),
     );

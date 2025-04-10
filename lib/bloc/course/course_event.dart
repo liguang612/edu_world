@@ -35,3 +35,20 @@ class GetLectures extends CourseEvent {
   @override
   List<Object?> get props => [lectureIds, chapter];
 }
+
+class EditCourseEvent extends CourseEvent {
+  final String id;
+  final String description;
+  final String? mediaPath;
+  final String name;
+
+  const EditCourseEvent({
+    required this.id,
+    required this.description,
+    this.mediaPath,
+    required this.name,
+  });
+
+  @override
+  List<Object?> get props => [id, description, name, mediaPath];
+}

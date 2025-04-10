@@ -22,6 +22,7 @@ class Course extends StatelessWidget {
     return BlocProvider.value(
       value: bloc,
       child: Scaffold(
+        backgroundColor: AppColor.white01,
         body: Stack(children: [
           RefreshIndicator.adaptive(
             onRefresh: () async {

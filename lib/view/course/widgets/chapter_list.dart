@@ -35,10 +35,6 @@ class _ChapterListState extends State<ChapterList> {
           child: Text(widget.chapters[index].name, style: AppTextTheme.interMedium12),
         ),
         tilePadding: EdgeInsets.zero,
-        trailing: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.add, color: AppColor.black, size: 12),
-        ),
         children: [LectureList(widget.chapters[index])],
       ),
       itemCount: widget.chapters.length,

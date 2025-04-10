@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:edu_world/di/di.dart';
 import 'package:edu_world/domain/repository/course_repository.dart';
 import 'package:edu_world/model/entity/chapter.dart';
+import 'package:edu_world/services/course_service.dart';
 import 'package:edu_world/services/lecture_service.dart';
 import 'package:edu_world/usecase/get_reviews_score_usecase.dart';
 import 'package:equatable/equatable.dart';
@@ -12,6 +13,7 @@ part 'course_state.dart';
 part 'course_event.dart';
 
 class CourseBloc extends Bloc<CourseEvent, CourseState> {
+  final CourseService _courseService = getIt.get();
   final LectureService _lectureService = getIt.get();
 
   final CourseRepository _courseRepository = getIt.get();
@@ -22,6 +24,8 @@ class CourseBloc extends Bloc<CourseEvent, CourseState> {
     on<AddChapter>(_onAddChapter);
     on<GetLectures>(_onGetLectures);
     on<GetReviews>(_onGetReviews);
+
+    on<EditCourseEvent>(_onEditCourse);
   }
 
   FutureOr<void> _onGetReviews(GetReviews event, Emitter<CourseState> emit) async {
@@ -46,5 +50,19 @@ class CourseBloc extends Bloc<CourseEvent, CourseState> {
     final res = await _lectureService.getLectures(event.lectureIds);
 
     emit(GetLectureListSuccess(res, event.chapter));
+  }
+
+  FutureOr<void> _onEditCourse(EditCourseEvent event, Emitter<CourseState> emit) async {
+    final res = await _courseService.editCourse(
+      id: event.id,
+      name: event.name,
+      description: event.description,
+    );
+
+    if (res) {
+      emit(EditCourseSuccess());
+    } else {
+      emit(EditCourseFailed());
+    }
   }
 }
