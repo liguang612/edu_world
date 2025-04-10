@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:edu_world/bloc/course/course_bloc.dart';
-import 'package:edu_world/bloc/course/create/create_course_bloc.dart';
 import 'package:edu_world/config/routes.dart';
 import 'package:edu_world/data/resources/colors.dart';
 import 'package:edu_world/data/resources/resources.dart';
@@ -113,13 +112,13 @@ class _EditCourseState extends State<EditCourse> {
               ],
             ),
             const SizedBox(height: 10),
-            BlocListener<CreateCourseBloc, CreateCourseState>(
+            BlocListener<CourseBloc, CourseState>(
               listener: (context, state) {
-                if (state is CreateCourseSuccess) {
-                  Fluttertoast.showToast(msg: state.message ?? '');
+                if (state is EditCourseSuccess) {
+                  Fluttertoast.showToast(msg: 'Sửa đổi thông tin thành công');
                   Navigator.pop(context);
-                } else if (state is CreateCourseFailed) {
-                  Fluttertoast.showToast(msg: state.message ?? '');
+                } else if (state is EditCourseFailed) {
+                  Fluttertoast.showToast(msg: 'Có lỗi xảy ra');
                 }
               },
               child: SizedBox(

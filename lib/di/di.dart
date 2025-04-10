@@ -1,4 +1,5 @@
 import 'package:edu_world/bloc/account/account_bloc.dart';
+import 'package:edu_world/bloc/course/course_bloc.dart';
 import 'package:edu_world/bloc/course/create/create_course_bloc.dart';
 import 'package:edu_world/bloc/course/list/course_list_bloc.dart';
 import 'package:edu_world/bloc/login/login_bloc.dart';
@@ -58,6 +59,7 @@ configureInjection() async {
 
   // Bloc
   getIt.registerLazySingleton(() => AccountBloc());
+  getIt.registerLazySingleton(() => CourseBloc());
   getIt.registerLazySingleton(() => CourseListBloc());
   getIt.registerLazySingleton(() => CreateCourseBloc());
   getIt.registerLazySingleton(() => LoginBloc());
