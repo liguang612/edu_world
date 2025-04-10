@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:edu_world/bloc/course/course_bloc.dart';
 import 'package:edu_world/bloc/course/create/create_course_bloc.dart';
 import 'package:edu_world/config/routes.dart';
 import 'package:edu_world/data/resources/colors.dart';
@@ -23,7 +24,7 @@ class EditCourse extends StatefulWidget {
 }
 
 class _EditCourseState extends State<EditCourse> {
-  final CreateCourseBloc bloc = getIt.get();
+  final CourseBloc bloc = getIt.get();
 
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
