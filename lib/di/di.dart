@@ -12,6 +12,7 @@ import 'package:edu_world/domain/repository/login_repository.dart';
 import 'package:edu_world/domain/repository/register_repository.dart';
 import 'package:edu_world/services/auth_service.dart';
 import 'package:edu_world/services/course_service.dart';
+import 'package:edu_world/services/lecture_service.dart';
 import 'package:edu_world/services/storage_service.dart';
 import 'package:edu_world/usecase/create_course_usecase.dart';
 import 'package:edu_world/usecase/get_account_info_usecase.dart';
@@ -36,6 +37,7 @@ configureInjection() async {
   // Database
   getIt.registerLazySingleton(() => AuthService());
   getIt.registerLazySingleton(() => CourseService());
+  getIt.registerLazySingleton(() => LectureService());
   getIt.registerLazySingleton(() => StorageService());
 
   // Repository

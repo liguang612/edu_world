@@ -27,7 +27,7 @@ class Chapter {
 
   factory Chapter.fromMap(Map<String, dynamic> map) {
     return Chapter(
-      lectureIds: List<String>.from(map['lectureIds'] as List<String>),
+      lectureIds: List<String>.from(map['lectureIds'] as List<dynamic>),
       name: map['name'] as String,
     );
   }

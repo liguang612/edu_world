@@ -1,5 +1,6 @@
 import 'package:edu_world/di/di.dart';
 import 'package:edu_world/domain/response/subject_response.dart';
+import 'package:edu_world/model/entity/chapter.dart';
 import 'package:edu_world/model/entity/course.dart';
 import 'package:edu_world/model/entity/review.dart';
 import 'package:edu_world/model/entity/subject.dart';
@@ -11,6 +12,16 @@ class CourseRepository {
   final CourseService _courseService = getIt.get();
 
   CourseRepository();
+
+  Future<Chapter?> addChapter(String courseId, String chapter) async {
+    final res = await _courseService.addChapter(courseId, chapter);
+
+    if (res) {
+      return Chapter(lectureIds: [], name: chapter);
+    } else {
+      return null;
+    }
+  }
 
   Future<List<Course>> getCourses(String userId, int role) async {
     try {

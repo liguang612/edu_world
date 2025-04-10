@@ -16,6 +16,24 @@ class CourseService {
     subjectRef = _firestore.collection(CollectionKeys.subjectCollection);
   }
 
+  Future<bool> addChapter(String courseId, String chapter) async {
+    try {
+      await courseRef.doc(courseId).update({
+        'chapters': FieldValue.arrayUnion([
+          {
+            'name': chapter,
+            'lectureIds': [],
+          }
+        ])
+      });
+
+      return true;
+    } catch (e) {
+      print('ADD CHAPTER ERROR: $e');
+    }
+    return false;
+  }
+
   Future<String?> createCourse(CourseResponse request) async {
     try {
       final ref = await courseRef.add(request.toMap()..remove('id'));

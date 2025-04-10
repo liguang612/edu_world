@@ -25,3 +25,13 @@ class GetReviews extends CourseEvent {
   @override
   List<Object?> get props => [courseId];
 }
+
+class GetLectures extends CourseEvent {
+  final List<String> lectureIds;
+  final Chapter chapter;
+
+  const GetLectures(this.lectureIds, this.chapter);
+
+  @override
+  List<Object?> get props => [lectureIds, chapter];
+}

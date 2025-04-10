@@ -25,6 +25,13 @@ class AppTextTheme {
     fontVariations: [FontVariation.weight(500)],
   );
 
+  static const interMedium12 = TextStyle(
+    color: AppColor.black,
+    fontFamily: 'Inter',
+    fontSize: 12,
+    fontVariations: [FontVariation.weight(500)],
+  );
+
   static const interMedium14 = TextStyle(
     color: AppColor.white,
     fontFamily: 'Inter',
@@ -108,6 +115,13 @@ class AppTextTheme {
     color: AppColor.black,
     fontFamily: 'Inter',
     fontSize: 12,
+    fontVariations: [FontVariation.weight(600)],
+  );
+
+  static const interSemiBold14 = TextStyle(
+    color: AppColor.black,
+    fontFamily: 'Inter',
+    fontSize: 14,
     fontVariations: [FontVariation.weight(600)],
   );
 
