@@ -1,12 +1,16 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:edu_world/data/constants.dart';
 import 'package:edu_world/domain/response/course_response.dart';
 import 'package:edu_world/domain/response/subject_response.dart';
 import 'package:edu_world/model/entity/review.dart';
 import 'package:edu_world/shared/utils/ext/map_ext.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class CourseService {
   final _firestore = FirebaseFirestore.instance;
+  final _storage = FirebaseStorage.instance;
 
   late final CollectionReference courseRef;
   late final CollectionReference subjectRef;
@@ -46,12 +50,30 @@ class CourseService {
     return null;
   }
 
-  Future<bool> editCourse({required String id, required String name, required String description}) async {
+  Future<bool> editCourse({
+    required String id,
+    required String name,
+    required String description,
+    File? wallpaper,
+  }) async {
+    String? wallpaperURL;
+
+    if (wallpaper != null) {
+      try {
+        await _storage.ref('class/wallpapaer/$id').putFile(wallpaper);
+
+        wallpaperURL = await _storage.ref('class/wallpapaer/$id').getDownloadURL();
+      } catch (e) {
+        print('UPLOAD WALLPAPER ERROR: $e');
+      }
+    }
+
     try {
       await courseRef.doc(id).update({
-        'name': name,
-        'description': description,
-      });
+            'name': name,
+            'description': description,
+            'wallpaper': wallpaperURL,
+          }.removeNull());
 
       return true;
     } catch (e) {

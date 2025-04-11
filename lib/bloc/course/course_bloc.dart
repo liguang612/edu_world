@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:edu_world/di/di.dart';
 import 'package:edu_world/domain/repository/course_repository.dart';
 import 'package:edu_world/model/entity/chapter.dart';
-import 'package:edu_world/services/course_service.dart';
 import 'package:edu_world/services/lecture_service.dart';
+import 'package:edu_world/usecase/edit_course_usecase.dart';
 import 'package:edu_world/usecase/get_reviews_score_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,11 +13,11 @@ part 'course_state.dart';
 part 'course_event.dart';
 
 class CourseBloc extends Bloc<CourseEvent, CourseState> {
-  final CourseService _courseService = getIt.get();
   final LectureService _lectureService = getIt.get();
 
   final CourseRepository _courseRepository = getIt.get();
 
+  final EditCourseUsecase _editCourseUsecase = getIt.get();
   final GetReviewsScoreUsecase _getReviewsScoreUsecase = getIt.get();
 
   CourseBloc() : super(const CourseState()) {
@@ -53,13 +53,14 @@ class CourseBloc extends Bloc<CourseEvent, CourseState> {
   }
 
   FutureOr<void> _onEditCourse(EditCourseEvent event, Emitter<CourseState> emit) async {
-    final res = await _courseService.editCourse(
+    final output = await _editCourseUsecase.execute(EditCourseInput(
       id: event.id,
       name: event.name,
       description: event.description,
-    );
+      mediaPath: event.mediaPath,
+    ));
 
-    if (res) {
+    if (output.successful == true) {
       emit(EditCourseSuccess());
     } else {
       emit(EditCourseFailed());

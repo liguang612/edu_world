@@ -1,8 +1,10 @@
 import 'package:edu_world/bloc/course/course_bloc.dart';
 import 'package:edu_world/config/routes.dart';
+import 'package:edu_world/data/local/local_data_access.dart';
 import 'package:edu_world/data/resources/colors.dart';
 import 'package:edu_world/data/resources/resources.dart';
 import 'package:edu_world/data/resources/theme.dart';
+import 'package:edu_world/di/di.dart';
 import 'package:edu_world/model/entity/course.dart';
 import 'package:edu_world/shared/utils/ext/build_context_ext.dart';
 import 'package:edu_world/view/course/widgets/chapter_list.dart';
@@ -19,6 +21,8 @@ class CourseDetail extends StatefulWidget {
 }
 
 class _CourseDetailState extends State<CourseDetail> {
+  final LocalDataAccess localDataAccess = getIt.get();
+
   late final CourseBloc bloc;
 
   late final Course course;
@@ -85,20 +89,21 @@ class _CourseDetailState extends State<CourseDetail> {
                   Row(children: [
                     const Text('Danh sách các chương', style: AppTextTheme.interSemiBold14),
                     const Spacer(),
-                    ElevatedButton(
-                      onPressed: () => setState(() => isAdding = true),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColor.white,
-                        elevation: 0,
-                        minimumSize: Size.zero,
-                        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 6),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4),
-                          side: const BorderSide(color: AppColor.purple01),
+                    if (localDataAccess.getRole() == 1)
+                      ElevatedButton(
+                        onPressed: () => setState(() => isAdding = true),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColor.white,
+                          elevation: 0,
+                          minimumSize: Size.zero,
+                          padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 6),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4),
+                            side: const BorderSide(color: AppColor.purple01),
+                          ),
                         ),
-                      ),
-                      child: const Text('+ Chương', style: AppTextTheme.interMedium11),
-                    )
+                        child: const Text('+ Chương', style: AppTextTheme.interMedium11),
+                      )
                   ]),
                   BlocBuilder<CourseBloc, CourseState>(
                     builder: (context, state) {
@@ -111,23 +116,24 @@ class _CourseDetailState extends State<CourseDetail> {
                       onAccept: (p0) => bloc.add(AddChapter(course.id, p0)),
                       onCancel: () => setState(() => isAdding = false),
                     ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () => Navigator.pushNamed(
-                        context,
-                        AppRoute.editCourse,
-                        arguments: EditCourseArgs(course),
+                  if (localDataAccess.getRole() == 1)
+                    Container(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () => Navigator.pushNamed(
+                          context,
+                          AppRoute.editCourse,
+                          arguments: EditCourseArgs(course),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColor.purple01,
+                          padding: const EdgeInsets.symmetric(vertical: 15),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+                        ),
+                        child: const Text('Sửa', style: AppTextTheme.interMedium18),
                       ),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColor.purple01,
-                        padding: const EdgeInsets.symmetric(vertical: 15),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-                      ),
-                      child: const Text('Sửa', style: AppTextTheme.interMedium18),
-                    ),
-                  )
+                    )
                 ]),
               ),
             )
